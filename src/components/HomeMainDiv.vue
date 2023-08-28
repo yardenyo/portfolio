@@ -1,7 +1,13 @@
 <template>
   <div id="large-header" class="large-header">
     <canvas id="demo-canvas"> </canvas>
-    <h1 class="main-title">Yarden <span class="thin">Yosef.</span></h1>
+    <div class="title-wrapper">
+      <h1 class="main-title">Yarden <span class="thin">Yosef.</span></h1>
+      <div class="description-container">
+        <div class="description-title"></div>
+        <!-- This element will be animated -->
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -9,6 +15,16 @@ import { ref, reactive, computed, onMounted } from "vue";
 import { TweenLite, Circ } from "gsap";
 
 onMounted(() => {
+  const descriptions = [
+    "Full Stack Developer.",
+    "Passionate about coding.",
+    "Creating amazing web experiences.",
+  ];
+
+  const descriptionTitle = document.querySelector(".description-title");
+
+  let currentIndex = 0;
+
   (function () {
     var width,
       height,
@@ -202,6 +218,37 @@ onMounted(() => {
       return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
     }
   })();
+
+  function animateDescription() {
+    const currentDescription = descriptions[currentIndex];
+    descriptionTitle.textContent = "";
+
+    typeText(currentDescription, () => {
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % descriptions.length;
+        animateDescription();
+      }, 1000);
+    });
+  }
+
+  function typeText(text, callback) {
+    let index = 0;
+    const typingSpeed = 50;
+
+    function type() {
+      if (index < text.length) {
+        descriptionTitle.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, typingSpeed);
+      } else {
+        callback();
+      }
+    }
+
+    type();
+  }
+
+  animateDescription();
 });
 </script>
 <style scoped lang="scss">
@@ -215,32 +262,36 @@ onMounted(() => {
   z-index: 1;
 }
 
-.main-title {
+.title-wrapper {
   position: absolute;
-  font-size: 4em;
-  margin: 0;
-  padding: 0;
-  color: $text-color-light;
-  text-align: center;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate3d(-50%, -50%, 0);
-  transform: translate3d(-50%, -50%, 0);
-}
+  transform: translate(-50%, -50%);
 
-.demo-1 .main-title {
-  text-transform: uppercase;
-  font-size: 4.2em;
-  letter-spacing: 0.1em;
-}
+  .main-title {
+    position: relative;
+    padding: 0 1rem;
+    font-size: 4rem;
+    font-weight: 500;
+    color: $white;
+    text-align: center;
+    z-index: 100;
+    .thin {
+      font-weight: 200;
+    }
+  }
 
-.main-title .thin {
-  font-weight: 200;
-}
-
-@media only screen and (max-width: 768px) {
-  .demo-1 .main-title {
-    font-size: 3em;
+  .description-title {
+    position: relative;
+    padding: 0 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+    color: $white;
+    text-align: center;
+    z-index: 100;
+    .thin {
+      font-weight: 200;
+    }
   }
 }
 </style>
