@@ -9,5 +9,9 @@ $accent-dark: #02050d;
 $text-color: $black;
 $text-color-light: $white;
 
-$main-background: #f5f8ff;
+$main-background: linear-gradient(
+  90deg,
+  rgba(7, 22, 58, 1) 0%,
+  rgba(2, 5, 13, 1) 100%
+);
 $primary-background: #1a191d;

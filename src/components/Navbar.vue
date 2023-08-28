@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="navbar-container">
       <div class="navbar-logo">
-        <div class="logo">Yarden Yosef.</div>
+        <div class="logo">Yarden <span class="thin">Yosef.</span></div>
       </div>
       <div v-if="windowWidth > 768" class="navbar-links">
         <div class="navbar-link">Home</div>
@@ -52,6 +52,10 @@ onMounted(() => {
         font-size: 1.5rem;
         font-weight: 500;
         color: white;
+
+        .thin {
+          font-weight: 200;
+        }
       }
     }
 
@@ -63,10 +67,15 @@ onMounted(() => {
 
       .navbar-link {
         margin: 0 1rem;
-        color: white;
+        color: $white;
+        opacity: 0.7;
         font-size: 1.2rem;
         font-weight: 500;
         cursor: pointer;
+
+        &:hover {
+          color: $primary;
+        }
       }
     }
   }
