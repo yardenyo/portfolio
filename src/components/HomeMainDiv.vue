@@ -217,6 +217,7 @@ onMounted(() => {
 
 .main-title {
   position: absolute;
+  font-size: 4em;
   margin: 0;
   padding: 0;
   color: $text-color-light;
