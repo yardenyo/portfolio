@@ -2,7 +2,7 @@
   <div id="large-header" class="large-header">
     <canvas id="demo-canvas"> </canvas>
     <img
-      src="src/assets/img/portrait.png"
+      src="/src/assets/img/portrait.png"
       alt="Portrait Image"
       class="portrait-image"
     />
@@ -389,6 +389,12 @@ onMounted(() => {
       flex-direction: column;
       font-size: 1.2rem;
     }
+  }
+}
+
+@media screen and (max-width: $mobile-width) {
+  #demo-canvas {
+    display: none;
   }
 }
 </style>
