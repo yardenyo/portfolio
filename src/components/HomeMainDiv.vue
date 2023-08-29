@@ -297,6 +297,7 @@ onMounted(() => {
   left: 10%;
   height: 100%;
   opacity: 0.4;
+  filter: brightness(0.5);
 }
 
 .title-wrapper {

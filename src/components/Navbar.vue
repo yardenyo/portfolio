@@ -9,14 +9,37 @@
         <div class="navbar-link">About</div>
         <button class="navbar-link">Contact Me</button>
       </div>
+      <div v-else class="hamburger-menu" @click="toggleMenu">
+        <div class="hamburger-menu-container">
+          <div class="hamburger-menu-line"></div>
+          <div class="hamburger-menu-line"></div>
+          <div class="hamburger-menu-line"></div>
+        </div>
+      </div>
+      <transition name="slide-fade">
+        <div v-if="showMenu" class="mobile-menu">
+          <div class="close-button" @click="toggleMenu">×</div>
+          <div class="mobile-menu-links">
+            <div class="navbar-link">Home</div>
+            <div class="navbar-link">About</div>
+            <button class="navbar-link">Contact Me</button>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref, reactive, computed, onMounted } from "vue";
 
 const windowWidth = ref(window.innerWidth);
 const scrollY = ref(window.scrollY);
+const showMenu = ref(false);
+
+function toggleMenu() {
+  showMenu.value = !showMenu.value;
+}
 
 onMounted(() => {
   window.addEventListener("resize", () => {
@@ -77,25 +100,106 @@ onMounted(() => {
           color: $primary;
         }
       }
+    }
 
-      button {
-        margin: 0 1rem;
-        padding: 0.5rem 1rem;
-        border: 1px solid $white;
-        border-radius: 0.5rem;
+    .hamburger-menu {
+      width: fit-content;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      .hamburger-menu-container {
+        width: 2rem;
+        height: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        .hamburger-menu-line {
+          width: 100%;
+          height: 1px;
+          background-color: $white;
+        }
+      }
+    }
+
+    .slide-fade-enter-active,
+    .slide-fade-leave-active {
+      transition: all 0.3s;
+    }
+
+    .slide-fade-enter,
+    .slide-fade-leave-to {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $main-background;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 0;
+      transform-origin: top;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+      font-size: 2rem;
+      color: $white;
+    }
+
+    .mobile-menu-links {
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+
+      .navbar-link {
         color: $white;
         opacity: 0.7;
         font-size: 1.2rem;
         font-weight: 500;
         cursor: pointer;
-        background-color: transparent;
 
         &:hover {
-          background-color: $white;
           color: $primary;
-          opacity: 1;
         }
       }
+    }
+
+    .show-mobile-menu {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  button {
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid $white;
+    border-radius: 0.5rem;
+    color: $white;
+    opacity: 0.7;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $white;
+      color: $primary;
+      opacity: 1 !important;
     }
   }
 }
