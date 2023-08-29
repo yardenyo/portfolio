@@ -21,7 +21,7 @@
 </template>
 <script setup>
 import { ref, reactive, computed, onMounted } from "vue";
-import { TweenLite, Circ } from "gsap";
+import gsap from "gsap";
 
 onMounted(() => {
   const descriptions = [
@@ -184,11 +184,12 @@ onMounted(() => {
     }
 
     function shiftPoint(p) {
-      TweenLite.to(p, 1 + 1 * Math.random(), {
+      gsap.to(p, {
+        duration: 1 + Math.random(),
         x: p.originX - 50 + Math.random() * 100,
         y: p.originY - 50 + Math.random() * 100,
-        ease: Circ.easeInOut,
-        onComplete: function () {
+        ease: "circ.inOut",
+        onComplete: () => {
           shiftPoint(p);
         },
       });
