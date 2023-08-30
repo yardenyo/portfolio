@@ -12,6 +12,9 @@
     <div id="about" class="about-me">
       <AboutMe />
     </div>
+    <div v-if="showScrollToTopButton" class="scroll-to-top-button">
+      <i class="fas fa-arrow-up" @click="scrollToTop"></i>
+    </div>
     <div class="fixed-whatsapp-button">
       <a
         :href="`https://wa.me/${phoneNumber}?text=${text}`"
@@ -47,9 +50,24 @@ const text = ref(
   "Hi%20Yarden%2C%20I%20saw%20your%20portfolio%20and%20I%20want%20to%20hire%20you!"
 );
 
+const scrollY = ref(window.scrollY);
+
+const showScrollToTopButton = computed(() => {
+  return scrollY.value > 100;
+});
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 onMounted(() => {
   sr.reveal(".skills", { interval: 200 });
+  sr.reveal(".scroll-to-top-button", { interval: 200 });
   sr.reveal(".fixed-whatsapp-button", { interval: 200 });
+
+  window.addEventListener("scroll", () => {
+    scrollY.value = window.scrollY;
+  });
 });
 </script>
 
@@ -102,12 +120,48 @@ onMounted(() => {
       }
     }
   }
+
+  .scroll-to-top-button {
+    position: fixed;
+    bottom: 5.5rem;
+    right: 1rem;
+    z-index: 1000;
+
+    i {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      background-color: lightgrey;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $text-color-accent;
+      font-size: 2rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
 }
 
 @media (max-width: $mobile-width) {
   .home {
     .fixed-whatsapp-button {
       .whatsapp-button {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.5rem;
+      }
+    }
+
+    .scroll-to-top-button {
+      bottom: 4.5rem;
+      i {
         width: 3rem;
         height: 3rem;
         font-size: 1.5rem;
