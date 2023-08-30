@@ -15,6 +15,7 @@
           />
         </div>
         <div class="about-me-text">
+          <SocialLinks />
           <div class="title">
             <h1>Hello, I Am <span class="primary-text">Yarden Yosef</span></h1>
           </div>
@@ -43,6 +44,7 @@
 
 <script setup>
 import { ref, reactive, computed, onMounted } from "vue";
+import SocialLinks from "@/components/SocialLinks.vue";
 import ScrollReveal from "scrollreveal";
 
 const sr = ScrollReveal({

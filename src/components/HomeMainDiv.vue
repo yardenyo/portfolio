@@ -18,17 +18,7 @@
           </div>
         </div>
 
-        <div class="social-media-links">
-          <a
-            v-for="link in socialLinks"
-            :key="link.name"
-            :href="link.link"
-            class="social-link"
-            target="_blank"
-          >
-            <i :class="link.iconClass"></i>
-          </a>
-        </div>
+        <socialLinks />
 
         <button class="contact-button">Hire Me</button>
       </div>
@@ -38,30 +28,8 @@
 
 <script setup>
 import { ref, reactive, computed, onMounted } from "vue";
+import socialLinks from "@/components/SocialLinks.vue";
 import gsap from "gsap";
-
-const socialLinks = ref([
-  {
-    name: "LinkedIn",
-    iconClass: "fab fa-linkedin-in",
-    link: "https://www.linkedin.com/in/yarden-yosef/",
-  },
-  {
-    name: "GitHub",
-    iconClass: "fab fa-github",
-    link: "https://github.com/yardenyo",
-  },
-  {
-    name: "Facebook",
-    iconClass: "fab fa-facebook-f",
-    link: "https://www.facebook.com/gmloler/",
-  },
-  {
-    name: "Instagram",
-    iconClass: "fab fa-instagram",
-    link: "https://www.instagram.com/yardenyo/",
-  },
-]);
 
 onMounted(() => {
   const descriptions = [
@@ -395,28 +363,6 @@ onMounted(() => {
       }
     }
 
-    .social-media-links {
-      margin-top: 3rem;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .social-link {
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 1.5rem;
-      padding: 0.5rem;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      width: 3.5rem;
-
-      &:hover {
-        color: $white;
-      }
-    }
     .contact-button {
       margin: 2rem 1rem;
       padding: 0.5rem 1rem;
