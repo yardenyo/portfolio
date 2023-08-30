@@ -11,17 +11,57 @@
         <h1 class="title">Yarden <span class="thin">Yosef.</span></h1>
       </div>
       <div class="description-container">
-        <div class="static-text">I Am</div>
-        <div class="description-title">
-          <span class="typed-text"></span>
+        <div class="description-content">
+          <div class="static-text">I Am</div>
+          <div class="description-title">
+            <span class="typed-text"></span>
+          </div>
         </div>
+
+        <div class="social-media-links">
+          <a
+            v-for="link in socialLinks"
+            :key="link.name"
+            :href="link.link"
+            class="social-link"
+            target="_blank"
+          >
+            <i :class="link.iconClass"></i>
+          </a>
+        </div>
+
+        <button class="contact-button">Hire Me</button>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref, reactive, computed, onMounted } from "vue";
 import gsap from "gsap";
+
+const socialLinks = ref([
+  {
+    name: "LinkedIn",
+    iconClass: "fab fa-linkedin-in",
+    link: "https://www.linkedin.com/in/yarden-yosef/",
+  },
+  {
+    name: "GitHub",
+    iconClass: "fab fa-github",
+    link: "https://github.com/yardenyo",
+  },
+  {
+    name: "Facebook",
+    iconClass: "fab fa-facebook-f",
+    link: "https://www.facebook.com/gmloler/",
+  },
+  {
+    name: "Instagram",
+    iconClass: "fab fa-instagram",
+    link: "https://www.instagram.com/yardenyo/",
+  },
+]);
 
 onMounted(() => {
   const descriptions = [
@@ -321,13 +361,19 @@ onMounted(() => {
   }
 
   .description-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 1rem;
     font-size: 2rem;
     font-weight: 500;
     color: $white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+    .description-content {
+      display: flex;
+      align-items: center;
+    }
 
     .static-text {
       margin-right: 0.5rem;
@@ -348,6 +394,49 @@ onMounted(() => {
         animation: blinkCursor 0.7s infinite alternate;
         color: $white;
         margin-left: 5px;
+      }
+    }
+
+    .social-media-links {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.5rem;
+      border: 1px solid $accent;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      width: 3.5rem;
+
+      &:hover {
+        color: $white;
+        background: $accent;
+      }
+    }
+    .contact-button {
+      margin: 2rem 1rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid $white;
+      border-radius: 0.5rem;
+      color: $white;
+      opacity: 0.7;
+      font-size: 1.2rem;
+      font-weight: 500;
+      cursor: pointer;
+      background-color: transparent;
+
+      &:hover {
+        background-color: $white;
+        color: $primary;
+        opacity: 1 !important;
       }
     }
   }
@@ -394,7 +483,30 @@ onMounted(() => {
 
 @media screen and (max-width: $mobile-width) {
   #demo-canvas {
-    display: none;
+    opacity: 0.1;
+  }
+
+  .social-link {
+    font-size: 1rem !important;
+    width: 2rem !important;
+    height: 2rem !important;
+    line-height: 2rem !important;
+  }
+
+  .contact-button {
+    font-size: 1rem !important;
+    padding: 0.5rem 0.5rem !important;
+  }
+
+  .description-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .static-text {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
   }
 }
 </style>

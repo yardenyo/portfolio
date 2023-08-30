@@ -7,7 +7,7 @@
       <div v-if="windowWidth > 768" class="navbar-links">
         <div class="navbar-link">Home</div>
         <div class="navbar-link">About</div>
-        <button class="navbar-link">Contact Me</button>
+        <button class="navbar-link">Hire Me</button>
       </div>
       <div v-else class="hamburger-menu" @click="toggleMenu">
         <div class="hamburger-menu-container">
@@ -22,7 +22,7 @@
           <div class="mobile-menu-links">
             <div class="navbar-link">Home</div>
             <div class="navbar-link">About</div>
-            <button class="navbar-link">Contact Me</button>
+            <button class="navbar-link">Hire Me</button>
           </div>
         </div>
       </transition>

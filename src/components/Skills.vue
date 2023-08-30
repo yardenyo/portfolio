@@ -8,6 +8,11 @@
       @mousemove="drag"
       @mouseup="endDrag"
     >
+      <i
+        class="arrow left-arrow fas fa-arrow-left"
+        @click="clickScrollLeft"
+        v-if="showLeftArrow"
+      ></i>
       <div class="carousel" ref="carousel">
         <div class="skills" ref="skillsContainer">
           <div class="skill" v-for="(skill, index) in skills" :key="index">
@@ -16,12 +21,17 @@
           </div>
         </div>
       </div>
+      <i
+        class="arrow right-arrow fas fa-arrow-right"
+        @click="clickScrollRight"
+        v-if="showRightArrow"
+      ></i>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch, onUnmounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const skills = ref([
   { name: "HTML", iconClass: "fa-brands fa-html5", color: "#f06c00" },
@@ -40,6 +50,7 @@ const skills = ref([
   { name: "GitHub", iconClass: "fa-brands fa-github", color: "#000" },
   { name: "GitLab", iconClass: "fa-brands fa-gitlab", color: "#ffa200" },
   { name: "AWS", iconClass: "fa-brands fa-aws", color: "#ffa200" },
+  { name: "WordPress", iconClass: "fa-brands fa-wordpress", color: "#70a5ff" },
 ]);
 
 const carouselContainer = ref(null);
@@ -49,12 +60,8 @@ let isDragging = false;
 let startX = 0;
 let scrollLeft = 0;
 
-onMounted(() => {
-  const container = carouselContainer.value;
-  if (container) {
-    container.style.cursor = "grab";
-  }
-});
+const showLeftArrow = ref(false);
+const showRightArrow = ref(true);
 
 function startDrag(e) {
   isDragging = true;
@@ -73,7 +80,39 @@ function drag(e) {
 function endDrag() {
   isDragging = false;
   carouselContainer.value.style.cursor = "grab";
+  updateArrowVisibility();
 }
+
+function updateArrowVisibility() {
+  showLeftArrow.value = carousel.value.scrollLeft > 0;
+
+  showRightArrow.value =
+    carousel.value.scrollLeft <
+    carousel.value.scrollWidth - carousel.value.clientWidth - 20;
+}
+
+function clickScrollLeft() {
+  carousel.value.scrollLeft -= 100;
+  updateArrowVisibility();
+}
+
+function clickScrollRight() {
+  carousel.value.scrollLeft += 100;
+  updateArrowVisibility();
+}
+
+onMounted(() => {
+  const container = carouselContainer.value;
+  if (container) {
+    container.style.cursor = "grab";
+  }
+  updateArrowVisibility();
+  carousel.value.addEventListener("scroll", updateArrowVisibility);
+});
+
+onBeforeUnmount(() => {
+  carousel.value.removeEventListener("scroll", updateArrowVisibility);
+});
 </script>
 
 <style scoped lang="scss">
@@ -137,6 +176,32 @@ function endDrag() {
 
     .carousel::-webkit-scrollbar {
       display: none;
+    }
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 100;
+    color: $text-color-accent-dark;
+  }
+
+  .left-arrow {
+    left: 10px;
+  }
+
+  .right-arrow {
+    right: 10px;
+  }
+}
+
+@media screen and (max-width: $mobile-width) {
+  .skills-carousel {
+    .title {
+      font-size: 1.5rem;
     }
   }
 }
