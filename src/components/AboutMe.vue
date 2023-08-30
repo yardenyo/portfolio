@@ -118,11 +118,11 @@ onMounted(() => {
       .about-me-image {
         flex: 1;
         max-width: 70%;
-        border: 1px solid $text-color-light;
+        border: 1px solid rgba(255, 255, 255, 0.2);
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 1rem;
+        padding: 0.5rem;
 
         img {
           width: 100%;
