@@ -167,7 +167,7 @@ onMounted(() => {
 
     .content-wrapper {
       flex-direction: column;
-      gap: 1rem;
+      gap: 1rem !important;
     }
     .about-me-image {
       width: 100%;
@@ -187,8 +187,11 @@ onMounted(() => {
   }
 
   @media (max-width: $mobile-width) {
+    .about-me-text-container {
+      font-size: 0.9rem !important;
+    }
     .about-me-container {
-      width: 90%;
+      width: 100% !important;
     }
     .title-container {
       width: 100% !important;
@@ -207,6 +210,10 @@ onMounted(() => {
     .about-me-text {
       flex: 1;
       text-align: center;
+
+      .title {
+        font-size: 0.6rem !important;
+      }
     }
   }
 }
