@@ -12,6 +12,9 @@
     <div id="about" class="about-me">
       <AboutMe />
     </div>
+    <div id="experience" class="experience">
+      <Experience />
+    </div>
     <div v-if="showScrollToTopButton" class="scroll-to-top-button">
       <i class="fas fa-arrow-up" @click="scrollToTop"></i>
     </div>
@@ -34,6 +37,7 @@ import HomeMainDiv from "@/components/HomeMainDiv.vue";
 import Navbar from "@/components/Navbar.vue";
 import Skills from "@/components/Skills.vue";
 import AboutMe from "@/components/AboutMe.vue";
+import Experience from "@/components/Experience.vue";
 import ScrollReveal from "scrollreveal";
 
 const sr = ScrollReveal({

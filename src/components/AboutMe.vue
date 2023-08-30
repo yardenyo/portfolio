@@ -35,6 +35,16 @@
               deliver high-quality results that not only meet but exceed
               expectations.
             </div>
+            <div class="paragraph">
+              <button class="button">
+                <a
+                  href="https://drive.google.com/file/d/1pTMkvkzVwFc6gDuO1-aWAVzcYv1c5-vw/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Download CV</a
+                >
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -149,9 +159,33 @@ onMounted(() => {
           display: flex;
           flex-direction: column;
           gap: 1rem;
-          align-items: center;
           font-size: 1.2rem;
           color: $text-color-light;
+
+          .button {
+            margin: 0.5rem 0;
+            padding: 12px 32px;
+            border: 1px solid $white;
+            border-radius: 30px;
+            color: $white;
+            font-size: 1.2rem;
+            font-weight: 500;
+            cursor: pointer;
+            background-color: transparent;
+
+            &:hover {
+              color: $primary;
+            }
+
+            a {
+              color: $white;
+              text-decoration: none;
+
+              &:hover {
+                color: $primary;
+              }
+            }
+          }
         }
       }
     }

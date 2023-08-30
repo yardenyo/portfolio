@@ -225,9 +225,9 @@ onMounted(() => {
 
   button {
     margin: 0 1rem;
-    padding: 0.5rem 1rem;
+    padding: 12px 28px;
     border: 1px solid $white;
-    border-radius: 0.5rem;
+    border-radius: 30px;
     color: $white;
     opacity: 0.7;
     font-size: 1.2rem;
