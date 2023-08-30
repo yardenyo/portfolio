@@ -1,3 +1,4 @@
+div
 <template>
   <div class="navbar">
     <div class="navbar-container">
@@ -5,9 +6,18 @@
         <div class="logo">Yarden <span class="thin">Yosef.</span></div>
       </div>
       <div v-if="windowWidth > 768" class="navbar-links">
-        <div class="navbar-link">Home</div>
-        <div class="navbar-link">About</div>
-        <button class="navbar-link">Hire Me</button>
+        <template :key="link.key" v-for="(link, index) in navbarLinks">
+          <div
+            v-if="link.key !== 'contact'"
+            class="navbar-link"
+            @click="scrollTo(link.id)"
+          >
+            {{ link.name }}
+          </div>
+          <button v-else class="navbar-link" @click="scrollTo(link.id)">
+            {{ link.name }}
+          </button>
+        </template>
       </div>
       <div v-else class="hamburger-menu" @click="toggleMenu">
         <div class="hamburger-menu-container">
@@ -20,9 +30,22 @@
         <div v-if="showMenu" class="mobile-menu">
           <div class="close-button" @click="toggleMenu">×</div>
           <div class="mobile-menu-links">
-            <div class="navbar-link">Home</div>
-            <div class="navbar-link">About</div>
-            <button class="navbar-link">Hire Me</button>
+            <template :key="link.key" v-for="(link, index) in navbarLinks">
+              <div
+                v-if="link.key !== 'contact'"
+                class="navbar-link"
+                @click="scrollTo(link.id, true)"
+              >
+                {{ link.name }}
+              </div>
+              <button
+                v-else
+                class="navbar-link"
+                @click="scrollTo(link.id, true)"
+              >
+                {{ link.name }}
+              </button>
+            </template>
           </div>
         </div>
       </transition>
@@ -37,8 +60,24 @@ const windowWidth = ref(window.innerWidth);
 const scrollY = ref(window.scrollY);
 const showMenu = ref(false);
 
+const navbarLinks = [
+  { name: "Home", id: "home", key: "home" },
+  { name: "Skills", id: "skills", key: "skills" },
+  { name: "About", id: "about", key: "about" },
+  { name: "Projects", id: "projects", key: "projects" },
+  { name: "Hire Me", id: "contact", key: "contact" },
+];
+
 function toggleMenu() {
   showMenu.value = !showMenu.value;
+}
+
+function scrollTo(id, closeMenu = false) {
+  const element = document.getElementById(id);
+  element.scrollIntoView({ behavior: "smooth" });
+  if (closeMenu) {
+    showMenu.value = false;
+  }
 }
 
 onMounted(() => {

@@ -3,11 +3,14 @@
     <div class="navbar">
       <Navbar />
     </div>
-    <div class="main-div">
+    <div id="home" class="main-div">
       <HomeMainDiv />
     </div>
-    <div class="skills">
+    <div id="skills" class="skills">
       <Skills />
+    </div>
+    <div id="about" class="about-me">
+      <AboutMe />
     </div>
     <div class="fixed-whatsapp-button">
       <a
@@ -27,6 +30,7 @@ import { ref, reactive, computed, onMounted } from "vue";
 import HomeMainDiv from "@/components/HomeMainDiv.vue";
 import Navbar from "@/components/Navbar.vue";
 import Skills from "@/components/Skills.vue";
+import AboutMe from "@/components/AboutMe.vue";
 import ScrollReveal from "scrollreveal";
 
 const sr = ScrollReveal({

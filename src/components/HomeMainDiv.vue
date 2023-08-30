@@ -327,8 +327,6 @@ onMounted(() => {
   width: 100%;
   background: $main-background;
   overflow: hidden;
-  background-size: cover;
-  background-position: center center;
   z-index: 1;
 }
 
@@ -406,7 +404,6 @@ onMounted(() => {
     .social-link {
       color: rgba(255, 255, 255, 0.5);
       font-size: 1.5rem;
-      border: 1px solid $accent;
       padding: 0.5rem;
       border-radius: 50%;
       transition: all 0.3s ease;
@@ -418,7 +415,6 @@ onMounted(() => {
 
       &:hover {
         color: $white;
-        background: $accent;
       }
     }
     .contact-button {
