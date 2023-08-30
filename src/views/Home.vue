@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from "vue";
+import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
 import HomeMainDiv from "@/components/HomeMainDiv.vue";
 import Navbar from "@/components/Navbar.vue";
 import Skills from "@/components/Skills.vue";
@@ -66,6 +66,12 @@ onMounted(() => {
   sr.reveal(".fixed-whatsapp-button", { interval: 200 });
 
   window.addEventListener("scroll", () => {
+    scrollY.value = window.scrollY;
+  });
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", () => {
     scrollY.value = window.scrollY;
   });
 });
