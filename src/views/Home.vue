@@ -27,11 +27,26 @@ import { ref, reactive, computed, onMounted } from "vue";
 import HomeMainDiv from "@/components/HomeMainDiv.vue";
 import Navbar from "@/components/Navbar.vue";
 import Skills from "@/components/Skills.vue";
+import ScrollReveal from "scrollreveal";
+
+const sr = ScrollReveal({
+  delay: 200,
+  duration: 800,
+  distance: "50px",
+  origin: "top",
+  easing: "ease-out",
+  reset: true,
+});
 
 const phoneNumber = ref("972527899937");
 const text = ref(
   "Hi%20Yarden%2C%20I%20saw%20your%20portfolio%20and%20I%20want%20to%20hire%20you!"
 );
+
+onMounted(() => {
+  sr.reveal(".skills", { interval: 200 });
+  sr.reveal(".fixed-whatsapp-button", { interval: 200 });
+});
 </script>
 
 <style scoped lang="scss">
