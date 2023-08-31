@@ -10,7 +10,7 @@
       <div class="content-wrapper">
         <div class="about-me-image">
           <img
-            src="@/assets/img/about-me-portrait.jpeg"
+            src="@/assets/img/about-me-portrait.webp"
             alt="Yarden's picture"
           />
         </div>

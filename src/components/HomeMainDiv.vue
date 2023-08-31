@@ -2,7 +2,7 @@
   <div id="large-header" class="large-header">
     <canvas id="demo-canvas"> </canvas>
     <img
-      src="/src/assets/img/portrait.png"
+      src="/src/assets/img/portrait.webp"
       alt="Portrait Image"
       class="portrait-image"
     />
