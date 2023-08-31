@@ -107,51 +107,6 @@ const projects = ref([
     projectUrl: "https://www.google.com",
     imageURL: "about-me-portrait.webp",
   },
-  {
-    id: 5,
-    title: "Development Project 3",
-    category: "development",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
-  },
-  {
-    id: 6,
-    title: "WordPress Project 3",
-    category: "wordpress",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
-  },
-  {
-    id: 7,
-    title: "Development Project 4",
-    category: "development",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
-  },
-  {
-    id: 8,
-    title: "WordPress Project 4",
-    category: "wordpress",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
-  },
-  {
-    id: 9,
-    title: "WordPress Project 5",
-    category: "wordpress",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
-  },
 ]);
 
 const filteredProjects = computed(() => {

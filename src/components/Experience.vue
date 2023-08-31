@@ -118,15 +118,28 @@ onMounted(() => {
   sr.reveal(".timeline .container", { interval: 200 });
 
   const timelineLine = document.querySelector(".timeline-line");
+  const resume = document.querySelector(".resume");
+
+  const updateTimeline = () => {
+    const rect = resume.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const resumeHeight = rect.height;
+
+    const scrollPercentage = Math.max(
+      0,
+      Math.min(
+        100,
+        ((viewportHeight - rect.top) / (viewportHeight + resumeHeight)) * 100
+      )
+    );
+
+    timelineLine.style.transform = `scaleY(${scrollPercentage / 100})`;
+  };
 
   window.addEventListener("resize", onWidthChange);
+  window.addEventListener("scroll", updateTimeline);
 
-  window.addEventListener("scroll", () => {
-    const scrollPercentage =
-      (window.scrollY / (document.body.clientHeight - window.innerHeight)) *
-      100;
-    timelineLine.style.transform = `scaleY(${scrollPercentage / 100})`;
-  });
+  updateTimeline();
 });
 </script>
 
@@ -180,7 +193,7 @@ onMounted(() => {
   margin-left: -3px;
   transform: scaleY(0);
   transform-origin: top center;
-  transition: transform 1s ease;
+  transition: transform 0.5s ease;
 }
 .container {
   padding: 10px 40px;
