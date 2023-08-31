@@ -30,6 +30,21 @@
 import { ref, reactive, computed, onMounted } from "vue";
 import socialLinks from "@/components/SocialLinks.vue";
 import gsap from "gsap";
+import { useHead } from "@vueuse/head";
+
+useHead({
+  meta: [
+    {
+      name: "description",
+      content: "Yarden's Portfolio - A portfolio website built with Vue 3",
+    },
+
+    {
+      name: "viewport",
+      content: "width=device-width, initial-scale=1.0",
+    },
+  ],
+});
 
 onMounted(() => {
   const descriptions = [

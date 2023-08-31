@@ -29,6 +29,21 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import ScrollReveal from "scrollreveal";
+import { useHead } from "@vueuse/head";
+
+useHead({
+  meta: [
+    {
+      name: "description",
+      content: "Yarden's Portfolio - A portfolio website built with Vue 3",
+    },
+
+    {
+      name: "viewport",
+      content: "width=device-width, initial-scale=1.0",
+    },
+  ],
+});
 
 const sr = ScrollReveal({
   delay: 200,
