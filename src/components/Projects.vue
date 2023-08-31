@@ -30,26 +30,28 @@
       </div>
 
       <div class="project-list">
-        <div
-          class="project-card"
-          v-for="project in filteredProjects"
-          :key="project.id"
-        >
-          <div class="project-header">
-            <h2>{{ project.title }}</h2>
+        <transition-group name="project-fade">
+          <div
+            class="project-card"
+            v-for="project in filteredProjects"
+            :key="project.id"
+          >
+            <div class="project-header">
+              <h2>{{ project.title }}</h2>
+            </div>
+            <img
+              :src="`src/assets/img/${project.imageURL}`"
+              :alt="project.title"
+              class="project-image"
+            />
+            <div class="project-details">
+              <p>{{ project.description }}</p>
+              <a :href="project.projectUrl" target="_blank" class="view-button"
+                >View Project</a
+              >
+            </div>
           </div>
-          <img
-            :src="`src/assets/img/${project.imageURL}`"
-            :alt="project.title"
-            class="project-image"
-          />
-          <div class="project-details">
-            <p>{{ project.description }}</p>
-            <a :href="project.projectUrl" target="_blank" class="view-button"
-              >View Project</a
-            >
-          </div>
-        </div>
+        </transition-group>
       </div>
     </div>
   </div>
@@ -136,7 +138,7 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   background: $main-background;
-  padding: 2rem;
+  padding: 2rem 2rem 5rem 2rem;
 
   .title-container {
     width: 25%;
@@ -255,6 +257,16 @@ onMounted(() => {
       }
     }
   }
+}
+
+.project-fade-enter-active,
+.project-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.project-fade-enter-from,
+.project-fade-leave-to {
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
 }
 
 @media screen and (max-width: $desktop-width) {
