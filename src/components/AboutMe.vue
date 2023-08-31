@@ -233,6 +233,10 @@ onMounted(() => {
     .about-me-text-container {
       gap: 2.5rem !important;
     }
+
+    .title-container {
+      width: 100% !important;
+    }
   }
 
   @media (max-width: $mobile-width) {

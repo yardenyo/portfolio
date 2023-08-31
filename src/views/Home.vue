@@ -15,6 +15,12 @@
     <div id="resume" class="experience">
       <Experience />
     </div>
+    <div id="projects" class="projects">
+      <Projects />
+    </div>
+    <div id="contact" class="contact">
+      <Contact />
+    </div>
     <div v-if="showScrollToTopButton" class="scroll-to-top-button">
       <i class="fas fa-arrow-up" @click="scrollToTop"></i>
     </div>
@@ -38,6 +44,8 @@ import Navbar from "@/components/Navbar.vue";
 import Skills from "@/components/Skills.vue";
 import AboutMe from "@/components/AboutMe.vue";
 import Experience from "@/components/Experience.vue";
+import Projects from "@/components/Projects.vue";
+import Contact from "@/components/Contact.vue";
 import ScrollReveal from "scrollreveal";
 import { useHead } from "@vueuse/head";
 
@@ -80,7 +88,6 @@ const scrollToTop = () => {
 };
 
 onMounted(() => {
-  sr.reveal(".skills", { interval: 200 });
   sr.reveal(".scroll-to-top-button", { interval: 200 });
   sr.reveal(".fixed-whatsapp-button", { interval: 200 });
 

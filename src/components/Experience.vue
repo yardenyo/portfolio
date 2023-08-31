@@ -135,7 +135,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f2f2f2;
+  background-color: $container-background;
   padding: 2rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -270,6 +270,12 @@ onMounted(() => {
     font-size: 16px;
     margin-bottom: 5px;
     font-weight: 500;
+  }
+}
+
+@media screen and (max-width: $tablet-width) {
+  .title-container {
+    width: 100% !important;
   }
 }
 

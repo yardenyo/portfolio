@@ -1,6 +1,11 @@
 <template>
   <div class="skills-carousel">
-    <div class="title">Technology Stack</div>
+    <div class="title-container">
+      <div class="skills-title">
+        <h1>Technology Stack</h1>
+      </div>
+      <div class="title-underline"></div>
+    </div>
     <div
       class="carousel-container"
       ref="carouselContainer"
@@ -32,6 +37,16 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import ScrollReveal from "scrollreveal";
+
+const sr = ScrollReveal({
+  delay: 200,
+  duration: 800,
+  distance: "50px",
+  origin: "top",
+  easing: "ease-out",
+  reset: true,
+});
 
 const skills = ref([
   { name: "HTML", iconClass: "fa-brands fa-html5", color: "#f06c00" },
@@ -102,6 +117,8 @@ function clickScrollRight() {
 }
 
 onMounted(() => {
+  sr.reveal(".skills-title", { interval: 200 });
+  sr.reveal(".skills", { interval: 200 });
   const container = carouselContainer.value;
   if (container) {
     container.style.cursor = "grab";
@@ -124,11 +141,30 @@ onBeforeUnmount(() => {
   align-items: center;
   height: 300px;
   overflow: hidden;
+  background: $container-background;
 
-  .title {
-    font-size: 2rem;
-    font-weight: 500;
-    color: $text-color-accent;
+  .title-container {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2rem;
+
+    .skills-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: $accent;
+    }
+
+    .title-underline {
+      content: "";
+      display: block;
+      width: 25%;
+      height: 2px;
+      background-color: $primary;
+      margin: 0.5rem auto;
+    }
   }
 
   .carousel-container {
@@ -198,11 +234,21 @@ onBeforeUnmount(() => {
   }
 }
 
+@media screen and (max-width: $tablet-width) {
+  .title-container {
+    width: 100% !important;
+  }
+}
+
 @media screen and (max-width: $mobile-width) {
   .skills-carousel {
     .title {
       font-size: 1.5rem;
     }
+  }
+
+  .title-container {
+    width: 100% !important;
   }
 }
 </style>
