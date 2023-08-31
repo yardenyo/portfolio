@@ -1,25 +1,17 @@
 <template>
   <div class="resume">
-    <div class="column education">
-      <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-      <div class="section" v-for="(edu, index) in education" :key="index">
-        <div class="item">
-          <h3>{{ edu.name }}</h3>
-          <p>Degree: {{ edu.degree }}</p>
-          <p>School: {{ edu.school }}</p>
-          <p>Year: {{ edu.year }}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="column experience">
-      <h2><i class="fas fa-briefcase"></i> Experience</h2>
-      <div class="section" v-for="(exp, index) in experience" :key="index">
-        <div class="item">
-          <h3>{{ exp.name }}</h3>
-          <p>Position: {{ exp.position }}</p>
-          <p>Company: {{ exp.company }}</p>
-          <p>Year: {{ exp.year }}</p>
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div
+        v-for="(event, index) in timelineEvents"
+        :key="index"
+        :class="['container', index % 2 === 0 ? 'left' : 'right']"
+      >
+        <div class="content">
+          <h2>{{ event.year }}</h2>
+          <h3>{{ event.name }}</h3>
+          <p>{{ event.company }}</p>
+          <div v-html="event.description"></div>
         </div>
       </div>
     </div>
@@ -54,100 +46,173 @@ const sr = ScrollReveal({
   reset: true,
 });
 
-const education = ref([
+const timelineEvents = ref([
   {
-    name: "Education 1",
-    degree: "Bachelor of Science",
-    school: "University XYZ",
-    year: "2010 - 2014",
+    name: "Front End Developer",
+    company: "TrackBox",
+    description: `
+      <ul>
+        <li>Implemented TrackBox Gaming's centralized platform using Vue.js, Pinia, and TypeScript, enabling seamless collaboration between iGaming operators and affiliates.</li>
+        <li>Developed intuitive user interfaces and integrated affiliate management tools for enhanced communication and streamlined sharing of campaign insights and data.</li>
+        <li>Created features that facilitate collaboration and ensure effective communication, fostering trust and seamless information sharing.</li>
+        <li>Played a crucial role in the development of a centralized platform, establishing mutually beneficial relationships between iGaming operators and affiliates while enhancing their overall operations.</li>
+      </ul>`,
+    year: "2022 - Present",
   },
   {
-    name: "Education 2",
-    degree: "Master of Science",
-    school: "University ABC",
-    year: "2015 - 2017",
+    name: "Full Stack Developer - Internship Position",
+    company: "SwagIT",
+    description: `
+      <ul>
+        <li>Actively contributed to the development of a scalable e-commerce system from the ground up, utilizing React.js, Express, MongoDB, and Node.js to deliver a robust and efficient solution.</li>
+        <li>Assisted in implementing critical features such as secure payment processing, user authentication, and order management, ensuring a reliable and secure e-commerce experience.</li>
+      </ul>`,
+    year: "2022",
   },
   {
-    name: "Education 3",
-    degree: "PhD in Computer Science",
-    school: "University DEF",
-    year: "2018 - 2022",
-  },
-]);
-
-const experience = ref([
-  {
-    name: "Experience 1",
-    position: "Software Developer",
-    company: "Tech Corp",
-    year: "2014 - 2017",
-  },
-  {
-    name: "Experience 2",
-    position: "Senior Developer",
-    company: "Mega Software",
-    year: "2017 - 2020",
-  },
-  {
-    name: "Experience 3",
-    position: "Team Lead",
-    company: "Innovate Inc.",
-    year: "2020 - Present",
+    name: "B.Sc. Computer Science",
+    company: "Sapir Academic College",
+    description: `
+      <ul>
+        <li>Developed strong programming skills and gained expertise in algorithms, data structures, software development, and database management.</li>
+        <li>Proficient in multiple languages (JAVA, C++, Python, JavaScript).</li>
+        <li>Solid understanding of computer architecture, operating systems, networking, and cybersecurity.</li>
+      </ul>`,
+    year: "2019 - 2022",
   },
 ]);
 
 onMounted(() => {
-  sr.reveal(".education .section", { interval: 200 });
-  sr.reveal(".experience .section", { interval: 200 });
+  sr.reveal(".timeline .container", { interval: 200 });
+
+  const timelineLine = document.querySelector(".timeline-line");
+
+  window.addEventListener("scroll", () => {
+    const scrollPercentage =
+      (window.scrollY / (document.body.clientHeight - window.innerHeight)) *
+      100;
+    timelineLine.style.transform = `scaleY(${scrollPercentage / 100})`;
+  });
 });
 </script>
 
 <style scoped lang="scss">
 .resume {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   background-color: #f2f2f2;
   padding: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.column {
-  flex: 1;
-  padding: 2rem;
-  background-color: #fff;
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.section {
-  margin-bottom: 2rem;
+.timeline-line {
+  position: absolute;
+  width: 6px;
+  background-color: $accent;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 1s ease;
+}
+.container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
 }
 
-.item {
-  background-color: #fff;
-  padding: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.container::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid $primary;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
 }
 
-h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #333;
+.left {
+  left: 0;
 }
 
-h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #555;
+.right {
+  left: 50%;
 }
 
-p {
-  font-size: 1rem;
-  margin-bottom: 0.2rem;
-  color: #777;
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
 }
 
-@media (max-width: $tablet-width) {
-  .resume {
-    flex-direction: column;
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+.right::after {
+  left: -16px;
+}
+
+.content {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 600px) {
+  .timeline::after {
+    left: 31px;
+  }
+
+  .container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .container::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+
+  .left::after,
+  .right::after {
+    left: 15px;
+  }
+
+  .right {
+    left: 0%;
   }
 }
 </style>
