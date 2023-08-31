@@ -304,11 +304,6 @@ onMounted(() => {
 
 @media screen and (max-width: $desktop-width) {
   .wrapper {
-    .filter-options {
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
     .project-list {
       grid-template-columns: repeat(1, 1fr) !important;
     }
@@ -327,6 +322,11 @@ onMounted(() => {
   }
 
   .wrapper {
+    .filter-options {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
     .project-list {
       grid-template-columns: repeat(1, 1fr) !important;
     }
