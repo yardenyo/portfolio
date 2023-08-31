@@ -186,19 +186,17 @@ onMounted(() => {
     .contact-button {
       margin: 2rem 1rem;
       padding: 12px 32px;
-      border: 1px solid $white;
+      border: 3px solid $primary;
       border-radius: 30px;
-      color: $white;
-      opacity: 0.7;
+      color: $black;
       font-size: 1.2rem;
       font-weight: 500;
       cursor: pointer;
-      background-color: transparent;
+      background-color: $white;
 
       &:hover {
         background-color: $white;
         color: $primary;
-        opacity: 1 !important;
       }
     }
   }

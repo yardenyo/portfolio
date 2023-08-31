@@ -232,21 +232,20 @@ onMounted(() => {
   }
 
   button {
-    margin: 0 1rem;
-    padding: 12px 28px;
-    border: 1px solid $white;
+    margin: 2rem 1rem;
+    padding: 12px 32px;
+    border: 3px solid $primary;
     border-radius: 30px;
-    color: $white;
-    opacity: 0.7;
+    color: $black !important;
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
-    background-color: transparent;
+    background-color: $white;
+    opacity: 1 !important;
 
     &:hover {
       background-color: $white;
-      color: $primary;
-      opacity: 1 !important;
+      color: $primary !important;
     }
   }
 }
