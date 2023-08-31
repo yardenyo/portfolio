@@ -56,6 +56,7 @@ div
 <script setup>
 import { ref, reactive, computed, onMounted } from "vue";
 import { useHead } from "@vueuse/head";
+import navbarLinks from "@/shared/navbarLinks";
 
 useHead({
   meta: [
@@ -74,14 +75,6 @@ useHead({
 const windowWidth = ref(window.innerWidth);
 const scrollY = ref(window.scrollY);
 const showMenu = ref(false);
-
-const navbarLinks = [
-  { name: "Home", id: "home", key: "home" },
-  { name: "Skills", id: "skills", key: "skills" },
-  { name: "About", id: "about", key: "about" },
-  { name: "Projects", id: "projects", key: "projects" },
-  { name: "Hire Me", id: "contact", key: "contact" },
-];
 
 function toggleMenu() {
   showMenu.value = !showMenu.value;

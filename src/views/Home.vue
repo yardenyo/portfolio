@@ -12,7 +12,7 @@
     <div id="about" class="about-me">
       <AboutMe />
     </div>
-    <div id="experience" class="experience">
+    <div id="resume" class="experience">
       <Experience />
     </div>
     <div v-if="showScrollToTopButton" class="scroll-to-top-button">
