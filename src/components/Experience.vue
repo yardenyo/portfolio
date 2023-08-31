@@ -1,11 +1,15 @@
 <template>
   <div class="resume">
+    <h1 class="resume-title">Resume</h1>
     <div class="timeline">
-      <div class="timeline-line"></div>
+      <div class="timeline-line" v-if="!isMobile"></div>
       <div
         v-for="(event, index) in timelineEvents"
         :key="index"
-        :class="['container', index % 2 === 0 ? 'left' : 'right']"
+        :class="[
+          isMobile ? 'container-mobile' : 'container',
+          index % 2 === 0 && !isMobile ? 'left' : 'right',
+        ]"
       >
         <div class="content">
           <h2>{{ event.year }}</h2>
@@ -19,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import ScrollReveal from "scrollreveal";
 import { useHead } from "@vueuse/head";
 
@@ -82,10 +86,21 @@ const timelineEvents = ref([
   },
 ]);
 
+let windowWidth = ref(window.innerWidth);
+
+const isMobile = computed(() => windowWidth.value < 600);
+
+function onWidthChange() {
+  windowWidth.value = window.innerWidth;
+}
+
 onMounted(() => {
+  sr.reveal(".timeline .container-mobile", { interval: 200 });
   sr.reveal(".timeline .container", { interval: 200 });
 
   const timelineLine = document.querySelector(".timeline-line");
+
+  window.addEventListener("resize", onWidthChange);
 
   window.addEventListener("scroll", () => {
     const scrollPercentage =
@@ -99,10 +114,17 @@ onMounted(() => {
 <style scoped lang="scss">
 .resume {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   background-color: #f2f2f2;
   padding: 2rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.resume-title {
+  color: $accent;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .timeline {
@@ -186,33 +208,66 @@ onMounted(() => {
   background-color: white;
   position: relative;
   border-radius: 6px;
+
+  h2 {
+    color: $accent;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  h3 {
+    color: $primary;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    color: $accent-dark;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  div {
+    color: $accent-dark;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
 }
 
 @media screen and (max-width: 600px) {
-  .timeline::after {
-    left: 31px;
-  }
-
-  .container {
+  .container-mobile {
+    padding: 10px 0;
     width: 100%;
-    padding-left: 70px;
-    padding-right: 25px;
-  }
+    font-size: 1rem;
+    text-align: center;
 
-  .container::before {
-    left: 60px;
-    border: medium solid white;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
-  }
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
 
-  .left::after,
-  .right::after {
-    left: 15px;
-  }
+      h2 {
+        font-size: 1.5rem;
+      }
 
-  .right {
-    left: 0%;
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      div {
+        text-align: left;
+      }
+    }
+  }
+  .container {
+    padding: 10px 0;
   }
 }
 </style>
