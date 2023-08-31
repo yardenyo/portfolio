@@ -1,6 +1,9 @@
 <template>
   <div class="resume">
-    <h1 class="resume-title">Resume</h1>
+    <div class="title-container">
+      <div class="resume-title"><h1>Resume</h1></div>
+      <div class="title-underline"></div>
+    </div>
     <div class="timeline">
       <div class="timeline-line" v-if="!isMobile"></div>
       <div
@@ -84,6 +87,21 @@ const timelineEvents = ref([
       </ul>`,
     year: "2019 - 2022",
   },
+  {
+    name: "Combat Warrior",
+    company: "Israeli air force Iron Dome weapon system",
+    description: `
+      <ul>
+        <li>Actively participated in a multitude of experiments and diverse operations, working closely alongside
+government organizations.
+</li>
+        <li>The role demanded exceptional resilience while navigating through high‑pressure scenarios, ensuring
+the smooth operation and maintenance of critical strategic systems. This experience reinforced my
+ability to perform under pressure.
+</li>
+      </ul>`,
+    year: "2011 - 2014",
+  },
 ]);
 
 let windowWidth = ref(window.innerWidth);
@@ -95,6 +113,7 @@ function onWidthChange() {
 }
 
 onMounted(() => {
+  sr.reveal(".resume-title", { interval: 200 });
   sr.reveal(".timeline .container-mobile", { interval: 200 });
   sr.reveal(".timeline .container", { interval: 200 });
 
@@ -121,10 +140,28 @@ onMounted(() => {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.resume-title {
-  color: $accent;
-  font-size: 24px;
-  margin-bottom: 20px;
+.title-container {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+
+  .resume-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: $accent;
+  }
+
+  .title-underline {
+    content: "";
+    display: block;
+    width: 25%;
+    height: 2px;
+    background-color: $primary;
+    margin: 0.5rem auto;
+  }
 }
 
 .timeline {
@@ -236,7 +273,7 @@ onMounted(() => {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $mobile-width) {
   .container-mobile {
     padding: 10px 0;
     width: 100%;
@@ -268,6 +305,10 @@ onMounted(() => {
   }
   .container {
     padding: 10px 0;
+  }
+
+  .title-container {
+    width: 100%;
   }
 }
 </style>
