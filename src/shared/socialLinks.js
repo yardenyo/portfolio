@@ -12,14 +12,9 @@ const socialLinks = ref([
     link: "https://github.com/yardenyo",
   },
   {
-    name: "Facebook",
-    iconClass: "fab fa-facebook-f",
-    link: "https://www.facebook.com/gmloler/",
-  },
-  {
-    name: "Instagram",
-    iconClass: "fab fa-instagram",
-    link: "https://www.instagram.com/yardenyo/",
+    name: "Email",
+    iconClass: "fas fa-envelope",
+    link: "mailto:yardenjobs@gmail.com",
   },
 ]);
 
