@@ -1,7 +1,11 @@
 <template>
   <div class="project-card">
     <div class="project-image-container">
-      <img :src="getURL" :alt="project.title" class="project-image" />
+      <img
+        :src="`/assets/img/${project.imageURL}`"
+        :alt="project.title"
+        class="project-image"
+      />
     </div>
     <div class="project-details">
       <div class="project-title">{{ project.title }}</div>
@@ -24,14 +28,6 @@ const props = defineProps({
 });
 
 const project = ref(props.project);
-
-const getURL = computed(() => {
-  if (import.meta.env.PROD) {
-    return `dist/assets/img/${project.value.imageURL}`;
-  } else {
-    return `src/assets/img/${project.value.imageURL}`;
-  }
-});
 </script>
 
 <style scoped lang="scss">

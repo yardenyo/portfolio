@@ -2,7 +2,7 @@
   <div id="large-header" class="large-header">
     <MouseTracker />
     <img
-      src="/src/assets/img/portrait.webp"
+      src="/assets/img/portrait.webp"
       alt="Portrait Image"
       class="portrait-image"
     />
