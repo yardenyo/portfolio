@@ -20,7 +20,9 @@
 
         <socialLinks />
 
-        <button class="contact-button">Hire Me</button>
+        <button class="contact-button" @click="scrollTo('contact')">
+          Hire Me
+        </button>
       </div>
     </div>
   </div>
@@ -45,6 +47,11 @@ useHead({
     },
   ],
 });
+
+function scrollTo(id) {
+  const element = document.getElementById(id);
+  element.scrollIntoView({ behavior: "smooth" });
+}
 
 onMounted(() => {
   const descriptions = [

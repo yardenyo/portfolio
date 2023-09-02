@@ -12,21 +12,21 @@
           <div class="form-group">
             <div class="form-group-wrapper">
               <div class="form-group-wrapper-fname">
-                <label for="first-name">First Name:</label>
+                <label for="first-name"><h3>First Name</h3></label>
                 <input type="text" id="first-name" name="first-name" required />
               </div>
               <div class="form-group-wrapper-lname">
-                <label for="last-name">Last Name:</label>
+                <label for="last-name"><h3>Last Name</h3></label>
                 <input type="text" id="last-name" name="last-name" required />
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="email">Your Email:</label>
+            <label for="email"><h3>Email</h3></label>
             <input type="email" id="email" name="email" required />
           </div>
           <div class="form-group">
-            <label for="message">Your Message:</label>
+            <label for="message"><h3>Message</h3></label>
             <textarea id="message" name="message" rows="5" required></textarea>
           </div>
           <button type="submit" class="submit-button">Send Message</button>
@@ -63,6 +63,7 @@ onMounted(() => {
   sr.reveal(".contact-title", { interval: 200 });
 });
 </script>
+
 <style scoped lang="scss">
 .contact {
   display: flex;
@@ -98,7 +99,6 @@ onMounted(() => {
   .wrapper {
     width: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
@@ -110,28 +110,24 @@ onMounted(() => {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
 
       form {
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
 
         .form-group {
           width: 100%;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          text-align: center;
+          align-items: flex-start;
           margin-bottom: 1rem;
 
           .form-group-wrapper {
             width: 100%;
             display: flex;
             align-items: center;
-            text-align: center;
             margin-bottom: 1rem;
             gap: 1rem;
 
@@ -143,50 +139,7 @@ onMounted(() => {
               align-items: flex-start;
               text-align: left;
               margin-bottom: 1rem;
-
-              label {
-                font-size: 1rem;
-                font-weight: 500;
-                color: $accent;
-                margin-bottom: 0.5rem;
-                display: block;
-              }
-
-              input {
-                width: 100%;
-                padding: 0.5rem;
-                border: 1px solid $accent;
-                border-radius: 0.25rem;
-                outline: none;
-                font-size: 1rem;
-                font-weight: 500;
-                color: $primary;
-              }
             }
-          }
-
-          label {
-            font-size: 1rem;
-            font-weight: 500;
-            color: $accent;
-            margin-bottom: 0.5rem;
-          }
-
-          input,
-          textarea {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid $accent;
-            border-radius: 0.25rem;
-            outline: none;
-            font-size: 1rem;
-            font-weight: 500;
-            color: $primary;
-          }
-
-          textarea {
-            resize: none;
-            height: 10rem;
           }
         }
 
@@ -220,6 +173,32 @@ onMounted(() => {
       overflow: hidden;
     }
   }
+}
+
+label {
+  h3 {
+    color: $accent;
+    margin-bottom: 0.5rem;
+  }
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid $accent;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $accent;
+  background: none;
+  height: auto;
+}
+
+textarea {
+  resize: none;
+  height: auto;
 }
 
 @media screen and (max-width: $desktop-width) {
