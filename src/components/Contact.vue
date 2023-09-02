@@ -296,19 +296,6 @@ onMounted(() => {
       width: 100% !important;
       height: 25rem !important;
     }
-
-    .contact-form {
-      form {
-        .form-group {
-          .form-group-wrapper {
-            .form-group-wrapper-fname,
-            .form-group-wrapper-lname {
-              width: 100% !important;
-            }
-          }
-        }
-      }
-    }
   }
 }
 
@@ -320,14 +307,9 @@ onMounted(() => {
   .wrapper {
     .contact-form {
       form {
-        .form-group {
-          .form-group-wrapper {
-            flex-direction: column !important;
-            .form-group-wrapper-fname,
-            .form-group-wrapper-lname {
-              width: 100% !important;
-            }
-          }
+        .form-group-wrapper {
+          flex-direction: column !important;
+          gap: 0 !important;
         }
       }
     }
