@@ -10,9 +10,11 @@
     <div class="project-details">
       <div class="project-title">{{ project.title }}</div>
       <div class="project-description">{{ project.description }}</div>
-      <a :href="project.projectUrl" target="_blank" class="view-button"
-        >View Project</a
-      >
+      <div class="project-button">
+        <a :href="project.projectUrl" target="_blank" class="view-button"
+          >View Project</a
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -85,21 +87,23 @@ const project = ref(props.project);
       margin-bottom: 1.5rem;
     }
 
-    .view-button {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background-color: $primary;
-      color: $black;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-      cursor: pointer;
+    .project-button {
+      .view-button {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: $primary;
+        color: $black;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
 
-      &:hover {
-        background-color: $accent;
-        color: $white;
+        &:hover {
+          background-color: $accent;
+          color: $white;
+        }
       }
     }
   }

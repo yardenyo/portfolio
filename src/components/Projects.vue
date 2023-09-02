@@ -51,7 +51,7 @@ import ScrollReveal from "scrollreveal";
 const sr = ScrollReveal({
   delay: 200,
   duration: 800,
-  distance: "50px",
+  distance: "100px",
   origin: "top",
   easing: "ease-out",
   reset: true,
