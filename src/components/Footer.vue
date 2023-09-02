@@ -3,43 +3,25 @@
     <div class="footer-content">
       <div class="logo">Yarden <span class="thin">Yosef.</span></div>
       <div class="sections">
-        <div class="footer-section">
-          <h3 class="section-title">Links</h3>
+        <div
+          class="footer-section"
+          v-for="(section, index) in sections"
+          :key="index"
+        >
+          <h3 class="section-title">{{ section.title }}</h3>
           <ul class="link-list">
-            <li class="link" @click="scrollTo('home')">Home</li>
-            <li class="link" @click="scrollTo('skills')">Skills</li>
-            <li class="link" @click="scrollTo('about')">About</li>
-            <li class="link" @click="scrollTo('resume')">Resume</li>
-            <li class="link" @click="scrollTo('projects')">Projects</li>
-            <li class="link" @click="scrollTo('contact')">Contact</li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3 class="section-title">Contact</h3>
-          <ul class="link-list">
-            <li class="link" @click="callMe">(+972) 52-789-9937</li>
-            <li class="link" @click="sendEmail">Yardenjobs@gmail.com</li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3 class="section-title">Services</h3>
-          <ul class="link-list">
-            <li class="text">Web Development</li>
-            <li class="text">Web Design</li>
-            <li class="text">Mobile Development</li>
-            <li class="text">Mobile Design</li>
-            <li class="text">WordPress Development</li>
-            <li class="text">WordPress Design</li>
-            <li class="text">SEO</li>
-            <li class="text">UI/UX Design</li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3 class="section-title">Legal</h3>
-          <ul class="link-list">
-            <li class="link">Terms of use</li>
-            <li class="link">Privacy policy</li>
-            <li class="link">Accessibility</li>
+            <li
+              :class="item.type"
+              v-for="(item, itemIndex) in section.items"
+              :key="itemIndex"
+            >
+              <template v-if="item.routerLink">
+                <router-link :to="item.routerLink">{{ item.text }}</router-link>
+              </template>
+              <template v-else>
+                <span @click="item.action">{{ item.text }}</span>
+              </template>
+            </li>
           </ul>
         </div>
       </div>
@@ -84,6 +66,52 @@ const getCurrentYear = computed(() => {
   return currentDate.getFullYear();
 });
 
+const sections = [
+  {
+    title: "Links",
+    items: [
+      { text: "Home", action: () => scrollTo("home"), type: "link" },
+      { text: "Skills", action: () => scrollTo("skills"), type: "link" },
+      { text: "About", action: () => scrollTo("about"), type: "link" },
+      { text: "Resume", action: () => scrollTo("resume"), type: "link" },
+      { text: "Projects", action: () => scrollTo("projects"), type: "link" },
+      { text: "Contact", action: () => scrollTo("contact"), type: "link" },
+    ],
+  },
+  {
+    title: "Contact",
+    items: [
+      { text: "(+972) 52-789-9937", action: callMe, type: "link" },
+      { text: "Yardenjobs@gmail.com", action: sendEmail, type: "link" },
+    ],
+  },
+  {
+    title: "Services",
+    items: [
+      "Web Development",
+      "Web Design",
+      "Mobile Development",
+      "Mobile Design",
+      "WordPress Development",
+      "WordPress Design",
+      "SEO",
+      "UI/UX Design",
+    ].map((text) => ({ text, type: "text" })),
+  },
+  {
+    title: "Legal",
+    items: [
+      { text: "Terms of use", routerLink: { name: "terms" }, type: "link" },
+      { text: "Privacy policy", routerLink: { name: "privacy" }, type: "link" },
+      {
+        text: "Accessibility",
+        routerLink: { name: "accessibility" },
+        type: "link",
+      },
+    ],
+  },
+];
+
 function scrollTo(id) {
   const element = document.getElementById(id);
   element.scrollIntoView({ behavior: "smooth" });
@@ -94,7 +122,7 @@ function callMe() {
 }
 
 function sendEmail() {
-  window.open("mailto: Yardenjobs@gmail.com");
+  window.open("mailto:Yardenjobs@gmail.com");
 }
 
 onMounted(() => {
@@ -170,6 +198,15 @@ onMounted(() => {
   margin: 0.2rem 0;
   cursor: pointer;
   transition: color 0.2s ease-in-out;
+
+  a {
+    text-decoration: none;
+    color: $white;
+
+    &:hover {
+      color: $primary;
+    }
+  }
 }
 
 .link:hover {

@@ -3,7 +3,11 @@ div
   <div class="navbar">
     <div class="navbar-container">
       <div class="navbar-logo">
-        <div class="logo">Yarden <span class="thin">Yosef.</span></div>
+        <div class="logo">
+          <router-link :to="{ name: 'home' }"
+            >Yarden <span class="thin">Yosef.</span></router-link
+          >
+        </div>
       </div>
       <div v-if="windowWidth > 768" class="navbar-links">
         <template :key="link.key" v-for="(link, index) in navbarLinks">
@@ -119,12 +123,15 @@ onMounted(() => {
       align-items: center;
 
       .logo {
-        font-size: 1.5rem;
-        font-weight: 500;
-        color: white;
+        a {
+          font-size: 1.5rem;
+          font-weight: 500;
+          color: white;
+          text-decoration: none;
 
-        .thin {
-          font-weight: 200;
+          .thin {
+            font-weight: 200;
+          }
         }
       }
     }
