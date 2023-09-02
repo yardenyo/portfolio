@@ -30,7 +30,7 @@
       <div class="footer-bottom-content">
         <div class="footer-bottom-left">
           <div class="footer-bottom-text">
-            © 2021 Yarden Yosef. All rights reserved.
+            © {{ getCurrentYear }} Yarden Yosef. All rights reserved.
           </div>
         </div>
         <div class="footer-bottom-right">
@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 import ScrollReveal from "scrollreveal";
 import socialLinks from "@/components/SocialLinks.vue";
 
@@ -98,10 +98,15 @@ const footerSections = [
   },
 ];
 
-const scrollTo = (id) => {
+const getCurrentYear = computed(() => {
+  const currentDate = new Date();
+  return currentDate.getFullYear();
+});
+
+function scrollTo(id) {
   const element = document.getElementById(id);
   element.scrollIntoView({ behavior: "smooth" });
-};
+}
 
 onMounted(() => {
   sr.reveal(".footer-content");
