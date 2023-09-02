@@ -34,7 +34,7 @@
       </div>
       <div class="contact-map">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.630742821737!2d-73.985099684593!3d40.748440979328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a6f1b6c1d7%3A0x9e4b4b0b9b0b0b0b!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1623169125099!5m2!1sen!2sus"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.7826921219435!2d34.8071768595719!3d31.96679157412086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b44655cc1c51%3A0xd09dee5e4f6f53c1!2z16rXqNeeIteRIDEsINeo15DXqdeV158g15zXpteZ15XXnw!5e0!3m2!1siw!2sil!4v1693668753843!5m2!1siw!2sil"
           width="100%"
           height="100%"
           style="border: 0"
