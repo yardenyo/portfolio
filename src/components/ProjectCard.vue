@@ -73,12 +73,14 @@ const project = ref(props.project);
     text-align: left;
 
     .project-title {
+      color: $accent;
       font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 1rem;
     }
 
     .project-description {
+      color: $accent;
       font-size: 1rem;
       margin-bottom: 1.5rem;
     }
@@ -87,7 +89,7 @@ const project = ref(props.project);
       display: inline-block;
       padding: 0.5rem 1rem;
       background-color: $primary;
-      color: $white;
+      color: $black;
       border: none;
       border-radius: 5px;
       text-decoration: none;
@@ -96,7 +98,8 @@ const project = ref(props.project);
       cursor: pointer;
 
       &:hover {
-        background-color: darken($primary, 10%);
+        background-color: $accent;
+        color: $white;
       }
     }
   }

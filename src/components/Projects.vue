@@ -45,6 +45,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import ProjectCard from "@/components/ProjectCard.vue";
+import projects from "@/shared/Projects";
 import ScrollReveal from "scrollreveal";
 
 const sr = ScrollReveal({
@@ -57,45 +58,6 @@ const sr = ScrollReveal({
 });
 
 const selectedFilter = ref("all");
-
-const projects = ref([
-  {
-    id: 1,
-    title: "Development Project 1",
-    category: "development",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
-  },
-  {
-    id: 2,
-    title: "WordPress Project 1",
-    category: "wordpress",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
-  },
-  {
-    id: 3,
-    title: "Development Project 2",
-    category: "development",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
-  },
-  {
-    id: 4,
-    title: "WordPress Project 2",
-    category: "wordpress",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
-  },
-]);
 
 const filteredProjects = computed(() => {
   if (selectedFilter.value === "all") {
@@ -222,6 +184,10 @@ onMounted(() => {
       flex-direction: column;
       align-items: center;
       gap: 1rem;
+
+      button {
+        width: 100%;
+      }
     }
     .project-list {
       grid-template-columns: repeat(1, 1fr) !important;
