@@ -21,6 +21,9 @@
     <div id="contact" class="contact">
       <Contact />
     </div>
+    <div class="footer">
+      <Footer />
+    </div>
     <div v-if="showScrollToTopButton" class="scroll-to-top-button">
       <i class="fas fa-arrow-up" @click="scrollToTop"></i>
     </div>
@@ -46,6 +49,7 @@ import AboutMe from "@/components/AboutMe.vue";
 import Experience from "@/components/Experience.vue";
 import Projects from "@/components/Projects.vue";
 import Contact from "@/components/Contact.vue";
+import Footer from "@/components/Footer.vue";
 import ScrollReveal from "scrollreveal";
 import { useHead } from "@vueuse/head";
 
