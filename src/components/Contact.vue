@@ -6,6 +6,12 @@
       </div>
       <div class="title-underline"></div>
     </div>
+    <div class="message success" v-if="state.messageSent && !state.isWarning">
+      <h3>Message sent successfully!</h3>
+    </div>
+    <div class="message warning" v-if="state.messageSent && state.isWarning">
+      <h3>Message failed to send!</h3>
+    </div>
     <div class="wrapper">
       <div class="contact-form">
         <form>
@@ -13,23 +19,50 @@
             <div class="form-group-wrapper">
               <div class="form-group-wrapper-fname">
                 <label for="first-name"><h3>First Name</h3></label>
-                <input type="text" id="first-name" name="first-name" required />
+                <input
+                  v-model="state.firstName"
+                  type="text"
+                  id="first-name"
+                  name="first-name"
+                  required
+                />
               </div>
               <div class="form-group-wrapper-lname">
                 <label for="last-name"><h3>Last Name</h3></label>
-                <input type="text" id="last-name" name="last-name" required />
+                <input
+                  v-model="state.lastName"
+                  type="text"
+                  id="last-name"
+                  name="last-name"
+                  required
+                />
               </div>
             </div>
           </div>
           <div class="form-group">
             <label for="email"><h3>Email</h3></label>
-            <input type="email" id="email" name="email" required />
+            <input
+              v-model="state.email"
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
           </div>
           <div class="form-group">
             <label for="message"><h3>Message</h3></label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <textarea
+              v-model="state.message"
+              id="message"
+              name="message"
+              rows="5"
+              required
+            ></textarea>
           </div>
-          <button type="submit" class="submit-button">Send Message</button>
+          <button type="submit" class="submit-button" @click="sendMessage">
+            Send Message
+          </button>
+          <small class="form-text">* All fields are required</small>
         </form>
       </div>
       <div class="contact-map">
@@ -47,7 +80,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, reactive, onMounted, computed } from "vue";
 import ScrollReveal from "scrollreveal";
 
 const sr = ScrollReveal({
@@ -59,8 +92,38 @@ const sr = ScrollReveal({
   reset: true,
 });
 
+const state = reactive({
+  firstName: "",
+  lastName: "",
+  email: "",
+  message: "",
+  messageSent: false,
+  isWarning: false,
+});
+
+function sendMessage(event) {
+  event.preventDefault();
+
+  state.messageSent = true;
+  console.log(state);
+
+  setTimeout(() => {
+    resetForm();
+  }, 3000);
+}
+
+function resetForm() {
+  state.firstName = "";
+  state.lastName = "";
+  state.email = "";
+  state.message = "";
+  state.messageSent = false;
+}
+
 onMounted(() => {
   sr.reveal(".contact-title", { interval: 200 });
+  sr.reveal(".contact-form", { delay: 200 });
+  sr.reveal(".contact-map", { delay: 200 });
 });
 </script>
 
@@ -71,6 +134,26 @@ onMounted(() => {
   align-items: center;
   background: $container-background;
   padding: 2rem;
+
+  .message {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .success {
+    h3 {
+      color: $success;
+    }
+  }
+
+  .warning {
+    h3 {
+      color: $danger;
+    }
+  }
 
   .title-container {
     width: 25%;
