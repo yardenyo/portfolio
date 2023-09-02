@@ -12,15 +12,6 @@ const projects = ref([
   },
   {
     id: 2,
-    title: "openFEC",
-    category: "development",
-    description:
-      "An open-source web app powered by the OpenFEC API for easy exploration of campaign finance data.",
-    projectUrl: "https://github.com/yardenyo/openFEC",
-    imageURL: "fec.webp",
-  },
-  {
-    id: 3,
     title: "LinkedIn Emails Extractor",
     category: "development",
     description:
