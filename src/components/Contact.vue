@@ -83,7 +83,7 @@ import emailjs from "@emailjs/browser";
 import ScrollReveal from "scrollreveal";
 import FormField from "@/components/FormField.vue";
 import { useVuelidate } from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
+import { required, email, helpers } from "@vuelidate/validators";
 
 const sr = ScrollReveal({
   delay: 200,
@@ -104,10 +104,17 @@ const state = reactive({
 });
 
 const validations = {
-  firstName: { required },
-  lastName: { required },
-  email: { required, email },
-  message: { required },
+  firstName: {
+    required: helpers.withMessage("First name is required", required),
+  },
+  lastName: {
+    required: helpers.withMessage("Last name is required", required),
+  },
+  email: {
+    required: helpers.withMessage("Email is required", required),
+    email: helpers.withMessage("Email must be valid", email),
+  },
+  message: { required: helpers.withMessage("Message is required", required) },
 };
 
 const v$ = useVuelidate(validations, state);
