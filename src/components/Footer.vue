@@ -3,21 +3,43 @@
     <div class="footer-content">
       <div class="logo">Yarden <span class="thin">Yosef.</span></div>
       <div class="sections">
-        <div
-          v-for="section in footerSections"
-          :key="section.title"
-          class="footer-section"
-        >
-          <h3 class="section-title">{{ section.title }}</h3>
+        <div class="footer-section">
+          <h3 class="section-title">Links</h3>
           <ul class="link-list">
-            <li
-              v-for="link in section.links"
-              :key="link.text"
-              class="link"
-              @click="scrollTo(link.id)"
-            >
-              {{ link.text }}
-            </li>
+            <li class="link" @click="scrollTo('home')">Home</li>
+            <li class="link" @click="scrollTo('skills')">Skills</li>
+            <li class="link" @click="scrollTo('about')">About</li>
+            <li class="link" @click="scrollTo('resume')">Resume</li>
+            <li class="link" @click="scrollTo('projects')">Projects</li>
+            <li class="link" @click="scrollTo('contact')">Contact</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="section-title">Contact</h3>
+          <ul class="link-list">
+            <li class="link" @click="callMe">(+972) 52-789-9937</li>
+            <li class="link" @click="sendEmail">Yardenjobs@gmail.com</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="section-title">Services</h3>
+          <ul class="link-list">
+            <li class="text">Web Development</li>
+            <li class="text">Web Design</li>
+            <li class="text">Mobile Development</li>
+            <li class="text">Mobile Design</li>
+            <li class="text">WordPress Development</li>
+            <li class="text">WordPress Design</li>
+            <li class="text">SEO</li>
+            <li class="text">UI/UX Design</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 class="section-title">Legal</h3>
+          <ul class="link-list">
+            <li class="link">Terms of use</li>
+            <li class="link">Privacy policy</li>
+            <li class="link">Accessibility</li>
           </ul>
         </div>
       </div>
@@ -57,47 +79,6 @@ const sr = ScrollReveal({
   reset: true,
 });
 
-const footerSections = [
-  {
-    title: "Links",
-    links: [
-      { id: "home", text: "Home", is: "link" },
-      { id: "skills", text: "Skills", is: "link" },
-      { id: "about", text: "About", is: "link" },
-      { id: "resume", text: "Resume", is: "link" },
-      { id: "projects", text: "Projects", is: "link" },
-      { id: "contact", text: "Contact", is: "link" },
-    ],
-  },
-  {
-    title: "Contact",
-    links: [
-      { text: "(+972) 52-789-9937", is: "phone", link: "tel:+972527899937" },
-      {
-        text: "Yardenjobs@gmail.com",
-        is: "email",
-        link: "mailto: Yardenjobs@gmail.com",
-      },
-    ],
-  },
-  {
-    title: "Services",
-    links: [
-      { text: "Web Development", is: "text" },
-      { text: "Mobile Development", is: "text" },
-      { text: "UI/UX Design", is: "text" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { text: "Privacy policy", is: "link" },
-      { text: "Terms of use", is: "link" },
-      { text: "Cookies", is: "link" },
-    ],
-  },
-];
-
 const getCurrentYear = computed(() => {
   const currentDate = new Date();
   return currentDate.getFullYear();
@@ -106,6 +87,14 @@ const getCurrentYear = computed(() => {
 function scrollTo(id) {
   const element = document.getElementById(id);
   element.scrollIntoView({ behavior: "smooth" });
+}
+
+function callMe() {
+  window.open("tel:+972527899937");
+}
+
+function sendEmail() {
+  window.open("mailto: Yardenjobs@gmail.com");
 }
 
 onMounted(() => {
