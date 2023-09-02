@@ -6,59 +6,51 @@
       </div>
       <div class="title-underline"></div>
     </div>
-    <div class="message success" v-if="state.messageSent && !state.isWarning">
-      <h3>Message sent successfully!</h3>
-    </div>
-    <div class="message warning" v-if="state.messageSent && state.isWarning">
-      <h3>Message failed to send!</h3>
-    </div>
     <div class="wrapper">
       <div class="contact-form">
         <form>
-          <div class="form-group">
-            <div class="form-group-wrapper">
-              <div class="form-group-wrapper-fname">
-                <label for="first-name"><h3>First Name</h3></label>
-                <input
-                  v-model="state.firstName"
-                  type="text"
-                  id="first-name"
-                  name="first-name"
-                  required
-                />
-              </div>
-              <div class="form-group-wrapper-lname">
-                <label for="last-name"><h3>Last Name</h3></label>
-                <input
-                  v-model="state.lastName"
-                  type="text"
-                  id="last-name"
-                  name="last-name"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email"><h3>Email</h3></label>
-            <input
-              v-model="state.email"
-              type="email"
-              id="email"
-              name="email"
-              required
+          <div class="form-group-wrapper">
+            <FormField
+              name="first-name"
+              label="First Name"
+              type="text"
+              :value="state.firstName"
+              :error="v$?.firstName?.$error"
+              :dirty="v$?.firstName?.$dirty"
+              :errorMessage="v$?.firstName?.$silentErrors[0]?.$message"
+              @update:modelValue="state.firstName = $event"
+            />
+            <FormField
+              name="last-name"
+              label="Last Name"
+              type="text"
+              :value="state.lastName"
+              :error="v$?.lastName?.$error"
+              :dirty="v$?.lastName?.$dirty"
+              :errorMessage="v$?.lastName?.$silentErrors[0]?.$message"
+              @update:modelValue="state.lastName = $event"
             />
           </div>
-          <div class="form-group">
-            <label for="message"><h3>Message</h3></label>
-            <textarea
-              v-model="state.message"
-              id="message"
-              name="message"
-              rows="5"
-              required
-            ></textarea>
-          </div>
+          <FormField
+            name="email"
+            label="Email"
+            type="email"
+            :value="state.email"
+            :error="v$?.email?.$error"
+            :dirty="v$?.email?.$dirty"
+            :errorMessage="v$?.email?.$silentErrors[0]?.$message"
+            @update:modelValue="state.email = $event"
+          />
+          <FormField
+            name="message"
+            label="Message"
+            type="text"
+            :value="state.message"
+            :error="v$?.message?.$error"
+            :dirty="v$?.message?.$dirty"
+            :errorMessage="v$?.message?.$silentErrors[0]?.$message"
+            @update:modelValue="state.message = $event"
+          />
           <button type="submit" class="submit-button" @click="sendMessage">
             Send Message
           </button>
@@ -76,6 +68,12 @@
         ></iframe>
       </div>
     </div>
+    <div class="message success" v-if="state.messageSent && !state.isWarning">
+      <h3>Message sent successfully!</h3>
+    </div>
+    <div class="message warning" v-if="state.messageSent && state.isWarning">
+      <h3>Message failed to send!</h3>
+    </div>
   </div>
 </template>
 
@@ -83,6 +81,9 @@
 import { ref, reactive, onMounted, computed } from "vue";
 import emailjs from "@emailjs/browser";
 import ScrollReveal from "scrollreveal";
+import FormField from "@/components/FormField.vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
 
 const sr = ScrollReveal({
   delay: 200,
@@ -102,8 +103,21 @@ const state = reactive({
   isWarning: false,
 });
 
+const validations = {
+  firstName: { required },
+  lastName: { required },
+  email: { required, email },
+  message: { required },
+};
+
+const v$ = useVuelidate(validations, state);
+
 function sendMessage(event) {
   event.preventDefault();
+
+  v$.value.$touch();
+
+  if (v$.value.$invalid) return;
 
   state.messageSent = true;
 
@@ -142,6 +156,7 @@ function resetForm() {
   state.email = "";
   state.message = "";
   state.messageSent = false;
+  v$.value.$reset();
 }
 
 onMounted(() => {
@@ -224,30 +239,11 @@ onMounted(() => {
         flex-direction: column;
         align-items: flex-start;
 
-        .form-group {
+        .form-group-wrapper {
           width: 100%;
           display: flex;
-          flex-direction: column;
           align-items: flex-start;
-          margin-bottom: 1rem;
-
-          .form-group-wrapper {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            gap: 1rem;
-
-            .form-group-wrapper-fname,
-            .form-group-wrapper-lname {
-              width: 100%;
-              display: flex;
-              flex-direction: column;
-              align-items: flex-start;
-              text-align: left;
-              margin-bottom: 1rem;
-            }
-          }
+          gap: 1rem;
         }
 
         .submit-button {
@@ -280,32 +276,6 @@ onMounted(() => {
       overflow: hidden;
     }
   }
-}
-
-label {
-  h3 {
-    color: $accent;
-    margin-bottom: 0.5rem;
-  }
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 0.5rem;
-  border: none;
-  border-bottom: 1px solid rgba(7, 22, 58, 0.2);
-  outline: none;
-  font-size: 1rem;
-  font-weight: 500;
-  color: $accent;
-  background: none;
-  height: auto;
-}
-
-textarea {
-  resize: none;
-  height: auto;
 }
 
 @media screen and (max-width: $desktop-width) {
