@@ -187,7 +187,7 @@ textarea {
   width: 100%;
   padding: 0.5rem;
   border: none;
-  border-bottom: 1px solid $accent;
+  border-bottom: 1px solid rgba(7, 22, 58, 0.2);
   outline: none;
   font-size: 1rem;
   font-weight: 500;
