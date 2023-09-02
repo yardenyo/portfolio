@@ -31,26 +31,11 @@
 
       <div class="project-list">
         <transition-group name="project-fade">
-          <div
-            class="project-card"
+          <ProjectCard
             v-for="project in filteredProjects"
             :key="project.id"
-          >
-            <div class="project-header">
-              <h2>{{ project.title }}</h2>
-            </div>
-            <img
-              :src="`src/assets/img/${project.imageURL}`"
-              :alt="project.title"
-              class="project-image"
-            />
-            <div class="project-details">
-              <p>{{ project.description }}</p>
-              <a :href="project.projectUrl" target="_blank" class="view-button"
-                >View Project</a
-              >
-            </div>
-          </div>
+            :project="project"
+          />
         </transition-group>
       </div>
     </div>
@@ -59,6 +44,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
+import ProjectCard from "@/components/ProjectCard.vue";
 import ScrollReveal from "scrollreveal";
 
 const sr = ScrollReveal({
@@ -197,64 +183,7 @@ onMounted(() => {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-      margin-top: 2rem;
-
-      .project-card {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 0.5rem;
-
-        &:hover {
-          transform: scale(1.05);
-        }
-
-        .project-header {
-          padding: 1rem;
-          color: $white;
-          font-size: 1rem;
-          font-weight: 500;
-        }
-
-        .project-image {
-          width: 100%;
-          height: 30rem;
-          object-fit: cover;
-        }
-
-        .project-details {
-          padding: 1rem;
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-
-          p {
-            color: $text-color-primary;
-          }
-
-          .view-button {
-            background-color: $primary;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            margin: 0 0.5rem;
-            color: $white;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            outline: none;
-            align-self: flex-end;
-            text-decoration: none;
-
-            &:hover {
-              background-color: $accent;
-              border: 1px solid $white;
-            }
-          }
-        }
-      }
+      justify-items: center;
     }
   }
 }
