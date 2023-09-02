@@ -81,6 +81,7 @@
 
 <script setup>
 import { ref, reactive, onMounted, computed } from "vue";
+import emailjs from "@emailjs/browser";
 import ScrollReveal from "scrollreveal";
 
 const sr = ScrollReveal({
@@ -105,11 +106,34 @@ function sendMessage(event) {
   event.preventDefault();
 
   state.messageSent = true;
-  console.log(state);
 
-  setTimeout(() => {
-    resetForm();
-  }, 3000);
+  const templateParams = {
+    from_name: `${state.firstName} ${state.lastName}`,
+    from_email: state.email,
+    message: state.message,
+  };
+
+  emailjs
+    .send(
+      "service_u4kd7xc",
+      "template_ix2d06a",
+      templateParams,
+      "TIqwvU0rBitO4MN8t"
+    )
+    .then(
+      (response) => {
+        state.isWarning = false;
+        setTimeout(() => {
+          resetForm();
+        }, 3000);
+      },
+      (err) => {
+        state.isWarning = true;
+        setTimeout(() => {
+          resetForm();
+        }, 3000);
+      }
+    );
 }
 
 function resetForm() {
