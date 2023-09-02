@@ -3,39 +3,30 @@ import { ref } from "vue";
 const projects = ref([
   {
     id: 1,
-    title: "Development Project 1",
+    title: "FlexFlix - Netflix Clone",
     category: "development",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
+      "A Netflix clone built with Vue.js, Pinia, Node.js, Express, MongoDB, and PrimeVue.",
+    projectUrl: "https://github.com/yardenyo/FlexFlix",
+    imageURL: "netflix.webp",
   },
   {
     id: 2,
-    title: "WordPress Project 1",
-    category: "wordpress",
+    title: "openFEC",
+    category: "development",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
+      "An open-source web app powered by the OpenFEC API for easy exploration of campaign finance data.",
+    projectUrl: "https://github.com/yardenyo/openFEC",
+    imageURL: "fec.webp",
   },
   {
     id: 3,
-    title: "Development Project 2",
+    title: "LinkedIn Emails Extractor",
     category: "development",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
-  },
-  {
-    id: 4,
-    title: "WordPress Project 2",
-    category: "wordpress",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    projectUrl: "https://www.google.com",
-    imageURL: "about-me-portrait.webp",
+      "LinkedIn script for extracting emails from posts and comments, filtered by specific vocabulary.",
+    projectUrl: "https://github.com/yardenyo/emailsExtractor",
+    imageURL: "linkedin.webp",
   },
 ]);
 

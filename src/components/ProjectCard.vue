@@ -21,6 +21,16 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
+import ScrollReveal from "scrollreveal";
+
+const sr = ScrollReveal({
+  delay: 200,
+  duration: 800,
+  distance: "50px",
+  origin: "top",
+  easing: "ease-out",
+  reset: true,
+});
 
 const props = defineProps({
   project: {
@@ -30,16 +40,21 @@ const props = defineProps({
 });
 
 const project = ref(props.project);
+
+onMounted(() => {
+  sr.reveal(".project-card", { interval: 200 });
+});
 </script>
 
 <style scoped lang="scss">
 .project-card {
-  background-color: $white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease;
   max-width: 400px;
+  padding: 0.5rem;
 
   &:hover {
     transform: scale(1.05);
@@ -49,11 +64,15 @@ const project = ref(props.project);
     position: relative;
     overflow: hidden;
     border-radius: 10px 10px 0 0;
+    height: 400px;
+    width: 100%;
 
     .project-image {
       width: 100%;
-      height: auto;
-      border-radius: 10px 10px 0 0;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 10px;
       transition: transform 0.3s ease;
 
       &:hover {
