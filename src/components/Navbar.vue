@@ -248,18 +248,17 @@ onMounted(() => {
   button {
     margin: 2rem 1rem;
     padding: 12px 32px;
-    border: 3px solid $primary;
-    border-radius: 30px;
-    color: $black !important;
+    border: 1px solid $primary;
+    border-radius: 10px;
+    color: $white !important;
     font-size: 1.2rem;
-    font-weight: 500;
     cursor: pointer;
-    background-color: $white;
+    background: transparent;
     opacity: 1 !important;
 
     &:hover {
-      background-color: $white;
-      color: $primary !important;
+      background-color: $primary;
+      color: $accent !important;
     }
   }
 }

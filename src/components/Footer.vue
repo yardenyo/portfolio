@@ -210,6 +210,7 @@ onMounted(() => {
   height: 1px;
   background-color: $white;
   margin: 1rem auto;
+  opacity: 0.2;
 }
 
 .footer-bottom {

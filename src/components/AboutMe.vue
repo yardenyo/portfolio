@@ -36,14 +36,7 @@
               expectations.
             </div>
             <div class="paragraph">
-              <button class="button">
-                <a
-                  href="https://drive.google.com/file/d/1pTMkvkzVwFc6gDuO1-aWAVzcYv1c5-vw/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Download CV</a
-                >
-              </button>
+              <button class="button" @click="downloadCV()">Download CV</button>
             </div>
           </div>
         </div>
@@ -72,6 +65,13 @@ useHead({
     },
   ],
 });
+
+function downloadCV() {
+  window.open(
+    "https://drive.google.com/file/d/1pTMkvkzVwFc6gDuO1-aWAVzcYv1c5-vw/view?usp=sharing",
+    "_blank"
+  );
+}
 
 onMounted(() => {
   ScrollReveal().reveal(".about-me-title", ScrollRevealObject);
@@ -174,8 +174,8 @@ onMounted(() => {
           .button {
             margin: 0.5rem 0;
             padding: 12px 32px;
-            border: 1px solid $white;
-            border-radius: 30px;
+            border: 1px solid $primary;
+            border-radius: 10px;
             color: $white;
             font-size: 1.2rem;
             font-weight: 500;
@@ -183,16 +183,8 @@ onMounted(() => {
             background-color: transparent;
 
             &:hover {
-              color: $primary;
-            }
-
-            a {
-              color: $white;
-              text-decoration: none;
-
-              &:hover {
-                color: $primary;
-              }
+              color: $accent;
+              background-color: $primary;
             }
           }
         }

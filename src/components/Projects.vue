@@ -128,7 +128,12 @@ onMounted(() => {
 
         &.active {
           background-color: $primary;
-          color: $white;
+          color: $black;
+        }
+
+        &:hover {
+          background-color: $primary;
+          color: $black;
         }
       }
     }
