@@ -8,7 +8,6 @@ const scrollRevealObject = reactive({
   interval: 100,
   origin: "bottom",
   reset: false,
-  scale: 1.2,
 });
 
 export default scrollRevealObject;
