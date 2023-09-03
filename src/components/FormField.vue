@@ -37,7 +37,7 @@ const props = defineProps({
     required: true,
   },
   error: {
-    type: String,
+    type: Boolean,
     required: true,
   },
   dirty: {
@@ -46,7 +46,6 @@ const props = defineProps({
   },
   errorMessage: {
     type: String,
-    required: true,
   },
 });
 </script>
