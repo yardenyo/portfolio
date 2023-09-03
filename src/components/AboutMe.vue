@@ -216,6 +216,9 @@ onMounted(() => {
   }
 
   @media (max-width: $tablet-width) {
+    .about-me {
+      background: $tablet-main-background !important;
+    }
     .about-me-text-container {
       gap: 2.5rem !important;
     }
@@ -226,6 +229,9 @@ onMounted(() => {
   }
 
   @media (max-width: $mobile-width) {
+    .about-me {
+      background: $mobile-main-background !important;
+    }
     .about-me-text-container {
       font-size: 0.9rem !important;
     }

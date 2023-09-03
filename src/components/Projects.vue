@@ -166,12 +166,18 @@ onMounted(() => {
 }
 
 @media screen and (max-width: $tablet-width) {
+  .projects {
+    background: $tablet-main-background;
+  }
   .title-container {
     width: 100% !important;
   }
 }
 
 @media screen and (max-width: $mobile-width) {
+  .projects {
+    background: $mobile-main-background;
+  }
   .title-container {
     width: 100% !important;
   }

@@ -213,10 +213,6 @@ onMounted(() => {
   opacity: 0.2;
 }
 
-.footer-bottom {
-  background-color: $main-background;
-}
-
 .social-links {
   display: flex;
   justify-content: center;
@@ -240,6 +236,18 @@ onMounted(() => {
 
   .footer-section {
     margin: 0.5rem;
+  }
+}
+
+@media (max-width: $tablet-width) {
+  .footer {
+    background: $tablet-main-background;
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .footer {
+    background: $mobile-main-background;
   }
 }
 </style>

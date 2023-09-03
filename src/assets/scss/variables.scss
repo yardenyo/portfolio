@@ -25,6 +25,18 @@ $main-background: radial-gradient(
   rgba(0, 0, 0, 1) 100.2%
 );
 
+$tablet-main-background: radial-gradient(
+  circle 815px at 133.4% -21.8%,
+  rgba(9, 29, 85, 1) 0.2%,
+  rgba(0, 0, 0, 1) 100.2%
+);
+
+$mobile-main-background: radial-gradient(
+  circle 815px at 173.4% -21.8%,
+  rgba(9, 29, 85, 1) 0.2%,
+  rgba(0, 0, 0, 1) 100.2%
+);
+
 $primary-background: #1a191d;
 $container-background: #f2f2f2;
 

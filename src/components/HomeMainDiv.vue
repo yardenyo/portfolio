@@ -243,6 +243,9 @@ onMounted(() => {
 }
 
 @media screen and (max-width: $tablet-width) {
+  .large-header {
+    background: $tablet-main-background;
+  }
   .title-wrapper {
     .main-title {
       font-size: 1.2rem;
@@ -257,6 +260,9 @@ onMounted(() => {
 }
 
 @media screen and (max-width: $mobile-width) {
+  .large-header {
+    background: $mobile-main-background;
+  }
   .social-link {
     font-size: 1rem !important;
     width: 2rem !important;
