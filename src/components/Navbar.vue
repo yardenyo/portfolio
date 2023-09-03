@@ -63,6 +63,7 @@ import { useHead } from "@vueuse/head";
 import navbarLinks from "@/shared/navbarLinks";
 import ScrollReveal from "scrollreveal";
 import ScrollRevealObject from "@/shared/ScrollRevealObject";
+import { useRouter } from "vue-router";
 
 useHead({
   meta: [
@@ -78,6 +79,8 @@ useHead({
   ],
 });
 
+const router = useRouter();
+
 const windowWidth = ref(window.innerWidth);
 const scrollY = ref(window.scrollY);
 const showMenu = ref(false);
@@ -88,7 +91,16 @@ function toggleMenu() {
 
 function scrollTo(id, closeMenu = false) {
   const element = document.getElementById(id);
-  element.scrollIntoView({ behavior: "smooth" });
+  if (!element) {
+    router.push({ name: "home" }).then(() => {
+      const updatedElement = document.getElementById(id);
+      if (updatedElement) {
+        updatedElement.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  } else {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
   if (closeMenu) {
     showMenu.value = false;
   }

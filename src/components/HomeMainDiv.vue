@@ -35,6 +35,9 @@ import MouseTracker from "@/components/MouseTracker.vue";
 import ScrollReveal from "scrollreveal";
 import ScrollRevealObject from "@/shared/ScrollRevealObject";
 import { useHead } from "@vueuse/head";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 useHead({
   meta: [
@@ -52,7 +55,16 @@ useHead({
 
 function scrollTo(id) {
   const element = document.getElementById(id);
-  element.scrollIntoView({ behavior: "smooth" });
+  if (!element) {
+    router.push({ name: "home" }).then(() => {
+      const updatedElement = document.getElementById(id);
+      if (updatedElement) {
+        updatedElement.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  } else {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
 }
 
 onMounted(() => {
