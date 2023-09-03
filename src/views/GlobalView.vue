@@ -1,15 +1,15 @@
 <template>
-  <div class="terms">
+  <div class="globalView">
     <div class="navbar">
       <Navbar />
     </div>
     <div id="home" class="main-div">
       <HomeMainDiv />
     </div>
-    <div class="content">
+    <div id="content" class="content">
       <h1>{{ title }}</h1>
       <h2>{{ subtitle }}</h2>
-      <p>{{ content }}</p>
+      <div class="content">{{ content }}</div>
     </div>
     <div class="footer">
       <Footer />
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, onMounted } from "vue";
 import HomeMainDiv from "@/components/HomeMainDiv.vue";
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
@@ -50,12 +50,18 @@ watchEffect(() => {
     }
   }
 });
+
+onMounted(() => {
+  const element = document.getElementById("content");
+  element.scrollIntoView({ behavior: "smooth" });
+});
 </script>
 
 <style lang="scss" scoped>
-.terms {
+.globalView {
   width: 100%;
   height: 100%;
+  background: $container-background;
 
   .navbar {
     width: 100%;
@@ -72,8 +78,30 @@ watchEffect(() => {
   }
 
   .content {
-    text-align: center;
     padding: 20px;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .content {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      background-color: $white;
+      padding: 30px;
+      border-radius: 10px;
+      line-height: 1.5;
+      white-space: pre-line;
+    }
   }
 }
 </style>
