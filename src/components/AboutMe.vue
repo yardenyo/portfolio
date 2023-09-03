@@ -36,14 +36,7 @@
               expectations.
             </div>
             <div class="paragraph">
-              <button class="button">
-                <a
-                  href="https://drive.google.com/file/d/1pTMkvkzVwFc6gDuO1-aWAVzcYv1c5-vw/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Download CV</a
-                >
-              </button>
+              <button class="button" @click="downloadCV()">Download CV</button>
             </div>
           </div>
         </div>
@@ -56,6 +49,7 @@
 import { ref, reactive, computed, onMounted } from "vue";
 import SocialLinks from "@/components/SocialLinks.vue";
 import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 import { useHead } from "@vueuse/head";
 
 useHead({
@@ -72,18 +66,18 @@ useHead({
   ],
 });
 
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
-});
+function downloadCV() {
+  window.open(
+    "https://drive.google.com/file/d/1pTMkvkzVwFc6gDuO1-aWAVzcYv1c5-vw/view?usp=sharing",
+    "_blank"
+  );
+}
 
 onMounted(() => {
-  sr.reveal(".about-me-title", { interval: 200 });
-  sr.reveal(".content-wrapper", { interval: 200 });
+  ScrollReveal().reveal(".about-me-title", ScrollRevealObject);
+  ScrollReveal().reveal(".about-me-image", ScrollRevealObject);
+  ScrollReveal().reveal(".about-me-text", ScrollRevealObject);
+  ScrollReveal().reveal(".button", ScrollRevealObject);
 });
 </script>
 
@@ -180,8 +174,8 @@ onMounted(() => {
           .button {
             margin: 0.5rem 0;
             padding: 12px 32px;
-            border: 1px solid $white;
-            border-radius: 30px;
+            border: 1px solid $primary;
+            border-radius: 10px;
             color: $white;
             font-size: 1.2rem;
             font-weight: 500;
@@ -189,16 +183,8 @@ onMounted(() => {
             background-color: transparent;
 
             &:hover {
-              color: $primary;
-            }
-
-            a {
-              color: $white;
-              text-decoration: none;
-
-              &:hover {
-                color: $primary;
-              }
+              color: $accent;
+              background-color: $primary;
             }
           }
         }
@@ -230,6 +216,9 @@ onMounted(() => {
   }
 
   @media (max-width: $tablet-width) {
+    .about-me {
+      background: $tablet-main-background !important;
+    }
     .about-me-text-container {
       gap: 2.5rem !important;
     }
@@ -240,6 +229,9 @@ onMounted(() => {
   }
 
   @media (max-width: $mobile-width) {
+    .about-me {
+      background: $mobile-main-background !important;
+    }
     .about-me-text-container {
       font-size: 0.9rem !important;
     }

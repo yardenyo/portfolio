@@ -1,10 +1,9 @@
 // Colors
 $white: #fff;
 $black: #000;
-$primary: #0af7fa;
-$secondary: #0e97b1;
+$primary: #ffcc25;
 $accent: #07163a;
-$accent-dark: #02050d;
+$accent-dark: #02050f;
 
 // OutSource Colors
 $whatsapp: #25d366;
@@ -13,7 +12,6 @@ $whatsapp: #25d366;
 $text-color: $black;
 $text-color-light: $white;
 $text-color-primary: $primary;
-$text-color-secondary: $secondary;
 $text-color-accent: $accent;
 $text-color-accent-dark: $accent-dark;
 
@@ -21,11 +19,24 @@ $success: #28a745;
 $danger: #dc3545;
 
 // Backgrounds
-$main-background: linear-gradient(
-  90deg,
-  rgba(7, 22, 58, 1) 0%,
-  rgba(2, 5, 13, 1) 100%
+$main-background: radial-gradient(
+  circle 815px at 23.4% -21.8%,
+  rgba(9, 29, 85, 1) 0.2%,
+  rgba(0, 0, 0, 1) 100.2%
 );
+
+$tablet-main-background: radial-gradient(
+  circle 815px at 133.4% -21.8%,
+  rgba(9, 29, 85, 1) 0.2%,
+  rgba(0, 0, 0, 1) 100.2%
+);
+
+$mobile-main-background: radial-gradient(
+  circle 815px at 173.4% -21.8%,
+  rgba(9, 29, 85, 1) 0.2%,
+  rgba(0, 0, 0, 1) 100.2%
+);
+
 $primary-background: #1a191d;
 $container-background: #f2f2f2;
 

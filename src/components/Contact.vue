@@ -51,7 +51,22 @@
             :errorMessage="v$?.message?.$silentErrors[0]?.$message"
             @update:modelValue="state.message = $event"
           />
-          <button type="submit" class="submit-button" @click="sendMessage">
+          <div class="recaptcha">
+            <VueRecaptcha
+              ref="recaptchaRef"
+              class="g-recaptcha"
+              :sitekey="siteKey"
+              :load-recaptcha-script="true"
+              @verify="handleSuccess"
+              @error="handleError"
+            ></VueRecaptcha>
+          </div>
+          <button
+            :disabled="disableSubmit"
+            type="submit"
+            class="submit-button"
+            @click="sendMessage"
+          >
             Send Message
           </button>
           <small class="form-text">* All fields are required</small>
@@ -81,18 +96,15 @@
 import { ref, reactive, onMounted, computed } from "vue";
 import emailjs from "@emailjs/browser";
 import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/scrollRevealObject";
 import FormField from "@/components/FormField.vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, helpers } from "@vuelidate/validators";
+import { VueRecaptcha } from "vue-recaptcha";
 
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
-});
+const disableSubmit = ref(true);
+const siteKey = ref(import.meta.env.VITE_RECAPTCHA_SITE_KEY);
+const recaptchaRef = ref(null);
 
 const state = reactive({
   firstName: "",
@@ -119,6 +131,14 @@ const validations = {
 
 const v$ = useVuelidate(validations, state);
 
+function handleSuccess(response) {
+  disableSubmit.value = false;
+}
+
+function handleError(response) {
+  disableSubmit.value = true;
+}
+
 function sendMessage(event) {
   event.preventDefault();
 
@@ -127,6 +147,7 @@ function sendMessage(event) {
   if (v$.value.$invalid) return;
 
   state.messageSent = true;
+  disableSubmit.value = true;
 
   const templateParams = {
     from_name: `${state.firstName} ${state.lastName}`,
@@ -163,13 +184,15 @@ function resetForm() {
   state.email = "";
   state.message = "";
   state.messageSent = false;
+  disableSubmit.value = false;
+  recaptchaRef.value.reset();
   v$.value.$reset();
 }
 
 onMounted(() => {
-  sr.reveal(".contact-title", { interval: 200 });
-  sr.reveal(".contact-form", { delay: 200 });
-  sr.reveal(".contact-map", { delay: 200 });
+  ScrollReveal().reveal(".contact-title", ScrollRevealObject);
+  ScrollReveal().reveal(".contact-form", ScrollRevealObject);
+  ScrollReveal().reveal(".contact-map", ScrollRevealObject);
 });
 </script>
 
@@ -240,6 +263,11 @@ onMounted(() => {
       flex-direction: column;
       align-items: center;
 
+      .recaptcha {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
       form {
         width: 100%;
         display: flex;
@@ -270,6 +298,13 @@ onMounted(() => {
             background-color: $accent;
             border: 1px solid $accent;
             color: $white;
+          }
+
+          &:disabled {
+            cursor: not-allowed;
+            background-color: $primary;
+            border: 1px solid $primary;
+            color: $black;
           }
         }
       }
@@ -321,11 +356,29 @@ onMounted(() => {
       }
     }
   }
+
+  .recaptcha {
+    .g-recaptcha {
+      transform: scale(0.77);
+      -webkit-transform: scale(0.77);
+      transform-origin: 0 0;
+      -webkit-transform-origin: 0 0;
+    }
+  }
 }
 
 @media screen and (max-width: $mobile-width) {
   .title-container {
     width: 100% !important;
+  }
+
+  .recaptcha {
+    .g-recaptcha {
+      transform: scale(0.55);
+      -webkit-transform: scale(0.55);
+      transform-origin: 0 0;
+      -webkit-transform-origin: 0 0;
+    }
   }
 }
 </style>

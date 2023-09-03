@@ -22,15 +22,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import ScrollReveal from "scrollreveal";
-
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
-});
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 
 const props = defineProps({
   project: {
@@ -42,7 +34,7 @@ const props = defineProps({
 const project = ref(props.project);
 
 onMounted(() => {
-  sr.reveal(".project-card", { interval: 200 });
+  ScrollReveal().reveal(".project-card", ScrollRevealObject);
 });
 </script>
 

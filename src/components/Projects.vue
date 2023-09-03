@@ -47,15 +47,7 @@ import { ref, onMounted, computed } from "vue";
 import ProjectCard from "@/components/ProjectCard.vue";
 import projects from "@/shared/Projects";
 import ScrollReveal from "scrollreveal";
-
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
-});
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 
 const selectedFilter = ref("all");
 
@@ -74,7 +66,7 @@ function filterProjects(filter) {
 }
 
 onMounted(() => {
-  sr.reveal(".projects-title", { interval: 200 });
+  ScrollReveal().reveal(".projects-title", ScrollRevealObject);
 });
 </script>
 <style scoped lang="scss">
@@ -136,7 +128,12 @@ onMounted(() => {
 
         &.active {
           background-color: $primary;
-          color: $white;
+          color: $black;
+        }
+
+        &:hover {
+          background-color: $primary;
+          color: $black;
         }
       }
     }
@@ -169,12 +166,18 @@ onMounted(() => {
 }
 
 @media screen and (max-width: $tablet-width) {
+  .projects {
+    background: $tablet-main-background;
+  }
   .title-container {
     width: 100% !important;
   }
 }
 
 @media screen and (max-width: $mobile-width) {
+  .projects {
+    background: $mobile-main-background;
+  }
   .title-container {
     width: 100% !important;
   }

@@ -19,6 +19,7 @@
     "scrollreveal": "^4.0.9",
     "vue": "^3.3.4",
     "vue-meta": "^2.4.0",
+    "vue-recaptcha": "^2.0.3",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {

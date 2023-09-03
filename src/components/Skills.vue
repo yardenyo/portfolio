@@ -38,15 +38,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import ScrollReveal from "scrollreveal";
-
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
-});
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 
 const skills = ref([
   { name: "HTML", iconClass: "fa-brands fa-html5", color: "#f06c00" },
@@ -117,8 +109,8 @@ function clickScrollRight() {
 }
 
 onMounted(() => {
-  sr.reveal(".skills-title", { interval: 200 });
-  sr.reveal(".skills", { interval: 200 });
+  ScrollReveal().reveal(".skills-title", ScrollRevealObject);
+  ScrollReveal().reveal(".skills", ScrollRevealObject);
   const container = carouselContainer.value;
   if (container) {
     container.style.cursor = "grab";

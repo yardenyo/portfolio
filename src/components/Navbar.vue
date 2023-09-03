@@ -61,6 +61,8 @@ div
 import { ref, reactive, computed, onMounted } from "vue";
 import { useHead } from "@vueuse/head";
 import navbarLinks from "@/shared/navbarLinks";
+import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 
 useHead({
   meta: [
@@ -93,6 +95,11 @@ function scrollTo(id, closeMenu = false) {
 }
 
 onMounted(() => {
+  ScrollReveal().reveal(".navbar-logo", ScrollRevealObject);
+  ScrollReveal().reveal(".navbar-links", ScrollRevealObject);
+  ScrollReveal().reveal(".hamburger-menu", ScrollRevealObject);
+  ScrollReveal().reveal(".mobile-menu", ScrollRevealObject);
+
   window.addEventListener("resize", () => {
     windowWidth.value = window.innerWidth;
   });
@@ -241,18 +248,17 @@ onMounted(() => {
   button {
     margin: 2rem 1rem;
     padding: 12px 32px;
-    border: 3px solid $primary;
-    border-radius: 30px;
-    color: $black !important;
+    border: 1px solid $primary;
+    border-radius: 10px;
+    color: $white !important;
     font-size: 1.2rem;
-    font-weight: 500;
     cursor: pointer;
-    background-color: $white;
+    background: transparent;
     opacity: 1 !important;
 
     &:hover {
-      background-color: $white;
-      color: $primary !important;
+      background-color: $primary;
+      color: $accent !important;
     }
   }
 }

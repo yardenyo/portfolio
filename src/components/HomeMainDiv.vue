@@ -32,6 +32,8 @@
 import { ref, reactive, computed, onMounted } from "vue";
 import socialLinks from "@/components/SocialLinks.vue";
 import MouseTracker from "@/components/MouseTracker.vue";
+import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 import { useHead } from "@vueuse/head";
 
 useHead({
@@ -54,8 +56,14 @@ function scrollTo(id) {
 }
 
 onMounted(() => {
+  ScrollReveal().reveal(".title", ScrollRevealObject);
+  ScrollReveal().reveal(".description-container", ScrollRevealObject);
+
   const descriptions = [
     "Full Stack Developer.",
+    "Frontend Developer.",
+    "Backend Developer.",
+    "WordPress Developer.",
     "Passionate about coding.",
     "Creating amazing web experiences.",
   ];
@@ -193,17 +201,17 @@ onMounted(() => {
     .contact-button {
       margin: 2rem 1rem;
       padding: 12px 32px;
-      border: 3px solid $primary;
-      border-radius: 30px;
-      color: $black;
+      border: 1px solid $primary;
+      border-radius: 10px;
+      color: $white;
       font-size: 1.2rem;
       font-weight: 500;
       cursor: pointer;
-      background-color: $white;
+      background: transparent;
 
       &:hover {
-        background-color: $white;
-        color: $primary;
+        background-color: $primary;
+        color: $black;
       }
     }
   }
@@ -235,6 +243,9 @@ onMounted(() => {
 }
 
 @media screen and (max-width: $tablet-width) {
+  .large-header {
+    background: $tablet-main-background;
+  }
   .title-wrapper {
     .main-title {
       font-size: 1.2rem;
@@ -249,6 +260,9 @@ onMounted(() => {
 }
 
 @media screen and (max-width: $mobile-width) {
+  .large-header {
+    background: $mobile-main-background;
+  }
   .social-link {
     font-size: 1rem !important;
     width: 2rem !important;

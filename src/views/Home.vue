@@ -51,6 +51,7 @@ import Projects from "@/components/Projects.vue";
 import Contact from "@/components/Contact.vue";
 import Footer from "@/components/Footer.vue";
 import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 import { useHead } from "@vueuse/head";
 
 useHead({
@@ -65,15 +66,6 @@ useHead({
       content: "width=device-width, initial-scale=1.0",
     },
   ],
-});
-
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
 });
 
 const phoneNumber = ref("972527899937");
@@ -92,8 +84,8 @@ const scrollToTop = () => {
 };
 
 onMounted(() => {
-  sr.reveal(".scroll-to-top-button", { interval: 200 });
-  sr.reveal(".fixed-whatsapp-button", { interval: 200 });
+  ScrollReveal().reveal(".scroll-to-top-button", ScrollRevealObject);
+  ScrollReveal().reveal(".fixed-whatsapp-button", ScrollRevealObject);
 
   window.addEventListener("scroll", () => {
     scrollY.value = window.scrollY;
