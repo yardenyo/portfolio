@@ -61,6 +61,8 @@ div
 import { ref, reactive, computed, onMounted } from "vue";
 import { useHead } from "@vueuse/head";
 import navbarLinks from "@/shared/navbarLinks";
+import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 
 useHead({
   meta: [
@@ -93,6 +95,11 @@ function scrollTo(id, closeMenu = false) {
 }
 
 onMounted(() => {
+  ScrollReveal().reveal(".navbar-logo", ScrollRevealObject);
+  ScrollReveal().reveal(".navbar-links", ScrollRevealObject);
+  ScrollReveal().reveal(".hamburger-menu", ScrollRevealObject);
+  ScrollReveal().reveal(".mobile-menu", ScrollRevealObject);
+
   window.addEventListener("resize", () => {
     windowWidth.value = window.innerWidth;
   });

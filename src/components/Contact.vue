@@ -81,18 +81,10 @@
 import { ref, reactive, onMounted, computed } from "vue";
 import emailjs from "@emailjs/browser";
 import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/scrollRevealObject";
 import FormField from "@/components/FormField.vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, helpers } from "@vuelidate/validators";
-
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
-});
 
 const state = reactive({
   firstName: "",
@@ -167,9 +159,9 @@ function resetForm() {
 }
 
 onMounted(() => {
-  sr.reveal(".contact-title", { interval: 200 });
-  sr.reveal(".contact-form", { delay: 200 });
-  sr.reveal(".contact-map", { delay: 200 });
+  ScrollReveal().reveal(".contact-title", ScrollRevealObject);
+  ScrollReveal().reveal(".contact-form", ScrollRevealObject);
+  ScrollReveal().reveal(".contact-map", ScrollRevealObject);
 });
 </script>
 

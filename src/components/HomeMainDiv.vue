@@ -32,6 +32,8 @@
 import { ref, reactive, computed, onMounted } from "vue";
 import socialLinks from "@/components/SocialLinks.vue";
 import MouseTracker from "@/components/MouseTracker.vue";
+import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 import { useHead } from "@vueuse/head";
 
 useHead({
@@ -54,6 +56,9 @@ function scrollTo(id) {
 }
 
 onMounted(() => {
+  ScrollReveal().reveal(".title", ScrollRevealObject);
+  ScrollReveal().reveal(".description-container", ScrollRevealObject);
+
   const descriptions = [
     "Full Stack Developer.",
     "Passionate about coding.",

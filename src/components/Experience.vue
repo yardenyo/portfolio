@@ -28,6 +28,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 import { useHead } from "@vueuse/head";
 
 useHead({
@@ -42,15 +43,6 @@ useHead({
       content: "width=device-width, initial-scale=1.0",
     },
   ],
-});
-
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
 });
 
 const timelineEvents = ref([
@@ -113,9 +105,9 @@ function onWidthChange() {
 }
 
 onMounted(() => {
-  sr.reveal(".resume-title", { interval: 200 });
-  sr.reveal(".timeline .container-mobile", { interval: 200 });
-  sr.reveal(".timeline .container", { interval: 200 });
+  ScrollReveal().reveal(".resume-title", ScrollRevealObject);
+  ScrollReveal().reveal(".timeline .container-mobile", ScrollRevealObject);
+  ScrollReveal().reveal(".timeline .container", ScrollRevealObject);
 
   const timelineLine = document.querySelector(".timeline-line");
   const resume = document.querySelector(".resume");

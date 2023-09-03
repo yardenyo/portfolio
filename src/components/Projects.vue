@@ -47,15 +47,7 @@ import { ref, onMounted, computed } from "vue";
 import ProjectCard from "@/components/ProjectCard.vue";
 import projects from "@/shared/Projects";
 import ScrollReveal from "scrollreveal";
-
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
-});
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 
 const selectedFilter = ref("all");
 
@@ -74,7 +66,7 @@ function filterProjects(filter) {
 }
 
 onMounted(() => {
-  sr.reveal(".projects-title", { interval: 200 });
+  ScrollReveal().reveal(".projects-title", ScrollRevealObject);
 });
 </script>
 <style scoped lang="scss">

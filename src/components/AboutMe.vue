@@ -56,6 +56,7 @@
 import { ref, reactive, computed, onMounted } from "vue";
 import SocialLinks from "@/components/SocialLinks.vue";
 import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 import { useHead } from "@vueuse/head";
 
 useHead({
@@ -72,18 +73,11 @@ useHead({
   ],
 });
 
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
-});
-
 onMounted(() => {
-  sr.reveal(".about-me-title", { interval: 200 });
-  sr.reveal(".content-wrapper", { interval: 200 });
+  ScrollReveal().reveal(".about-me-title", ScrollRevealObject);
+  ScrollReveal().reveal(".about-me-image", ScrollRevealObject);
+  ScrollReveal().reveal(".about-me-text", ScrollRevealObject);
+  ScrollReveal().reveal(".button", ScrollRevealObject);
 });
 </script>
 

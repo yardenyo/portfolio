@@ -50,16 +50,8 @@
 <script setup>
 import { onMounted, computed } from "vue";
 import ScrollReveal from "scrollreveal";
+import ScrollRevealObject from "@/shared/ScrollRevealObject";
 import socialLinks from "@/components/SocialLinks.vue";
-
-const sr = ScrollReveal({
-  delay: 200,
-  duration: 800,
-  distance: "50px",
-  origin: "top",
-  easing: "ease-out",
-  reset: true,
-});
 
 const getCurrentYear = computed(() => {
   const currentDate = new Date();
@@ -126,8 +118,8 @@ function sendEmail() {
 }
 
 onMounted(() => {
-  sr.reveal(".footer-content");
-  sr.reveal(".footer-bottom");
+  ScrollReveal().reveal(".footer-content", ScrollRevealObject);
+  ScrollReveal().reveal(".footer-bottom", ScrollRevealObject);
 });
 </script>
 
