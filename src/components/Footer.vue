@@ -52,6 +52,9 @@ import { onMounted, computed } from "vue";
 import ScrollReveal from "scrollreveal";
 import ScrollRevealObject from "@/shared/ScrollRevealObject";
 import socialLinks from "@/components/SocialLinks.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const getCurrentYear = computed(() => {
   const currentDate = new Date();
@@ -93,11 +96,19 @@ const sections = [
   {
     title: "Legal",
     items: [
-      { text: "Terms of use", routerLink: { name: "terms" }, type: "link" },
-      { text: "Privacy policy", routerLink: { name: "privacy" }, type: "link" },
+      {
+        text: "Terms of use",
+        routerLink: "terms-of-use",
+        type: "link",
+      },
+      {
+        text: "Privacy policy",
+        routerLink: "privacy-policy",
+        type: "link",
+      },
       {
         text: "Accessibility",
-        routerLink: { name: "accessibility" },
+        routerLink: "accessibility",
         type: "link",
       },
     ],
@@ -106,7 +117,16 @@ const sections = [
 
 function scrollTo(id) {
   const element = document.getElementById(id);
-  element.scrollIntoView({ behavior: "smooth" });
+  if (!element) {
+    router.push({ name: "home" }).then(() => {
+      const updatedElement = document.getElementById(id);
+      if (updatedElement) {
+        updatedElement.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  } else {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
 }
 
 function callMe() {
