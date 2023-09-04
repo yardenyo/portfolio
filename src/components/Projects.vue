@@ -22,10 +22,11 @@
           Development
         </button>
         <button
+          class="disabled"
           @click="filterProjects('wordpress')"
           :class="{ active: selectedFilter === 'wordpress' }"
         >
-          WordPress
+          WordPress - Under Construction
         </button>
       </div>
 
@@ -70,6 +71,17 @@ onMounted(() => {
 });
 </script>
 <style scoped lang="scss">
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+
+  &:hover {
+    background: transparent;
+    color: $text-color-primary;
+  }
+}
+
 .primary-text {
   color: $text-color-primary;
 }
